@@ -506,6 +506,7 @@ jump_height = 256.0
 jump_time_to_peak = 0.5
 jump_time_to_descent = 0.3
 on_jump_timer_max = 0.1
+coyote_timer_max = 1.0
 
 [node name="Sprite" type="Sprite2D" parent="Field/Player"]
 texture = ExtResource("1_ogyri")

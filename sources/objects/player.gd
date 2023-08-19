@@ -12,14 +12,20 @@ extends CharacterBody2D
 @onready var fall_gravity = float ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 
 
+var can_jump:bool = false
+
 var on_jump_timer:float = 0
 @export var on_jump_timer_max:float 
+
+var coyote_timer:float = 0
+@export var coyote_timer_max:float
 
 func _ready():
 	pass
 
 func _physics_process(delta):
 	# Add the gravity.
+	
 	if not is_on_floor():
 		if velocity.y < 0:
 			velocity.y += jump_gravity*delta
@@ -30,10 +36,16 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_accept"):
 		on_jump_timer = on_jump_timer_max
 		
+	if is_on_floor():
+		coyote_timer = coyote_timer_max
+	else:
+		coyote_timer -= delta
+			
 	if on_jump_timer > 0:
-		if is_on_floor():
+		if is_on_floor() || coyote_timer > 0:
 			velocity.y = jump_velocity
 			on_jump_timer = 0
+			coyote_timer = 0
 		else:
 			on_jump_timer -= delta
 	
