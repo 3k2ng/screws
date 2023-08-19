@@ -1,108 +1,105 @@
 extends CharacterBody2D
 
+const BLOCK_SIZE: int = 128
 
+@export var extra_jumps: int = 2
+@onready var extra_jumps_left: int = 0
 
-@export var movement_speed_blocks: float
-@export var jump_height_blocks : float
-@export var jump_time_to_peak : float
-@export var jump_time_to_descent : float
+@export var movement_speed_blocks: float = 4
+@export var wall_bounce_blocks: float = 4
+@export var jump_height_blocks : float = 4
+@export var wall_slide_speed_blocks : float = 2
 
-@onready var block_size:int = 128
+@export var jump_time_to_peak : float = 0.6
+@export var jump_time_to_descent : float = 0.4
 
-@onready var jump_height = jump_height_blocks * block_size
-@onready var movement_speed = movement_speed_blocks * block_size
+@onready var jump_height: float = jump_height_blocks * BLOCK_SIZE
+@onready var wall_bounce: float = wall_bounce_blocks * BLOCK_SIZE
+@onready var movement_speed: float = movement_speed_blocks * BLOCK_SIZE
+@onready var wall_slide_speed: float = wall_slide_speed_blocks * BLOCK_SIZE
 
-@onready var jump_velocity = float ((2.0 * jump_height) / jump_time_to_peak) * -1.0
-@onready var jump_gravity = float ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
-@onready var fall_gravity = float ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
+@onready var jump_velocity: float = -2.0 * jump_height / jump_time_to_peak
+@onready var jump_gravity: float = 2.0 * jump_height / (jump_time_to_peak * jump_time_to_peak)
+@onready var fall_gravity: float = 2.0 * jump_height / (jump_time_to_descent * jump_time_to_descent)
 
+@onready var max_fall_speed: float = fall_gravity * jump_time_to_descent
 
-var wall_jump_timer = 0
+@export var coyote_floor_time: float = 0.16
+@onready var coyote_floor_timer: float = 0.0
 
-var prev_dir
-var can_jump:bool = false
+@export var coyote_wall_time: float = 0.16
+@onready var coyote_wall_timer: float = 0.0
 
-var on_jump_timer:float = 0
-@export var on_jump_timer_max:float 
+@export var jump_buffer_time: float = 0.16
+@onready var jump_buffer_timer: float = 0.0
 
-var coyote_timer:float = 0
-@export var coyote_timer_max:float
+@export var wall_bounce_time: float = 0.16
+@onready var wall_bounce_timer: float = 0.0
 
-func _ready():
+func _ready() -> void:
 	pass
 
-func _physics_process(delta):
-	# Add the gravity.
-	
-	if wall_jump_timer > 0:
-		wall_jump_timer -= delta
-	
+func _physics_process(delta: float) -> void:
+	if is_on_floor():
+		coyote_floor_timer = coyote_floor_time
+		extra_jumps_left = extra_jumps
+
+	if is_on_wall():
+		coyote_wall_timer = coyote_wall_time
+		extra_jumps_left = extra_jumps
 	
 	var direction = Input.get_axis("move_left", "move_right")
-	if direction:
-		if wall_jump_timer <= 0:
-			velocity.x = direction * movement_speed
+	if wall_bounce_timer > 0:
+		if direction * velocity.x > 0:
+			wall_bounce_timer = 0
+	elif direction:
+		velocity.x = direction * movement_speed
 	else:
-		if wall_jump_timer <= 0:
-			velocity.x = move_toward(velocity.x, 0, movement_speed)
-
-	#print (direction)
-
-	if not is_on_floor():
-		if velocity.y < 0:
-			velocity.y += jump_gravity*delta
-		else:
-			if is_on_wall() && direction != 0:
-				velocity.y += fall_gravity*delta/10
-			else:
-				velocity.y += fall_gravity*delta
-				
-	# Handle Jump.
+		velocity.x = move_toward(velocity.x, 0, movement_speed)
+	
 	if Input.is_action_just_pressed("jump"):
-		if not is_on_wall():
-			on_jump_timer = on_jump_timer_max
+		jump_buffer_timer = jump_buffer_time
+	
+	# If jump is pressed (jump_buffer_timer > 0) and either of the coyote timer is active
+	if jump_buffer_timer > 0 and (coyote_floor_timer > 0 or coyote_wall_timer > 0 or extra_jumps_left > 0):
+		# coyote_wall_timer means wall jump
+		if coyote_wall_timer > 0:
+			if Input.is_action_pressed("move_right"):
+				velocity.x = -wall_bounce
+				wall_bounce_timer = wall_bounce_time
+			elif Input.is_action_pressed("move_left"):
+				velocity.x = wall_bounce
+				wall_bounce_timer = wall_bounce_time
+		elif coyote_floor_timer <= 0:
+			extra_jumps_left -= 1
+		velocity.y = jump_velocity
+		jump_buffer_timer = 0
+	
+	# Update gravity
+	if velocity.y >= 0:
+		# Cap gravity at wall slide speed if touching wall
+		if is_on_wall() and (Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left")):
+			velocity.y = minf(velocity.y + fall_gravity * delta, wall_slide_speed)
 		else:
-			if prev_dir != 0:
-				on_jump_timer = on_jump_timer_max
-			else:
-				on_jump_timer = on_jump_timer_max
-			
-	if Input.is_action_just_released("jump"):
-		if velocity.y < 0:
-			velocity.y = 0
-		
-	if is_on_floor():
-		coyote_timer = coyote_timer_max
-
-	if (is_on_wall_only() && direction != 0):
-		coyote_timer = coyote_timer_max
-		prev_dir = direction
-		
-	if coyote_timer > 0:
-		coyote_timer -= delta
+			velocity.y = minf(velocity.y + fall_gravity * delta, max_fall_speed)
 	else:
-		prev_dir = direction
-
-	if on_jump_timer > 0:
-		if is_on_floor() || coyote_timer > 0:
-			if prev_dir != 0:
-				
-				velocity.x = -movement_speed * 2 * prev_dir 
-				print(velocity.x)
-				velocity.y = jump_velocity
-				on_jump_timer = 0
-				wall_jump_timer = 0.1
-				coyote_timer = 0
-			else:
-				velocity.y = jump_velocity
-				on_jump_timer = 0
-				coyote_timer = 0
+		# Cut upward velocity if release jump button
+		if not Input.is_action_pressed("jump") or is_on_ceiling():
+			velocity.y = 0
 		else:
-			on_jump_timer -= delta
-
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-
-		
+			velocity.y += jump_gravity * delta
+	
 	move_and_slide()
+	
+	# Update timers
+	if coyote_floor_timer > 0:
+		coyote_floor_timer -= delta
+	
+	if coyote_wall_timer > 0:
+		coyote_wall_timer -= delta
+	
+	if jump_buffer_timer > 0:
+		jump_buffer_timer -= delta
+	
+	if wall_bounce_timer > 0:
+		wall_bounce_timer -= delta
