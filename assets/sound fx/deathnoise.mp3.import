@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b6ux2pdybtni4"
+path="res://.godot/imported/deathnoise.mp3-9c26bde310ecccf6b373ea90eb290e6b.mp3str"
+
+[deps]
+
+source_file="res://assets/sound fx/deathnoise.mp3"
+dest_files=["res://.godot/imported/deathnoise.mp3-9c26bde310ecccf6b373ea90eb290e6b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
