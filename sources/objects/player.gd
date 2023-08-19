@@ -1,21 +1,13 @@
 extends CharacterBody2D
 
-
-
-@export var movement_speed_blocks: float
-@export var jump_height_blocks : float
+@export var movement_speed: float
+@export var jump_height : float
 @export var jump_time_to_peak : float
 @export var jump_time_to_descent : float
-
-@onready var block_size:int = 128
-
-@onready var jump_height = jump_height_blocks * block_size
-@onready var movement_speed = movement_speed_blocks * block_size
 
 @onready var jump_velocity = float ((2.0 * jump_height) / jump_time_to_peak) * -1.0
 @onready var jump_gravity = float ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
 @onready var fall_gravity = float ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
-
 
 var wall_jump_timer = 0
 
@@ -47,7 +39,6 @@ func _physics_process(delta):
 			velocity.x = move_toward(velocity.x, 0, movement_speed)
 
 	#print (direction)
-
 	if not is_on_floor():
 		if velocity.y < 0:
 			velocity.y += jump_gravity*delta
