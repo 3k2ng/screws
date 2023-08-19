@@ -11,8 +11,10 @@ const BLOCK_SIZE: int = 128
 @onready var start_point: float = global_position.x
 @onready var end_point: float = global_position.x + moving_distance
 @onready var player_node = get_tree().get_first_node_in_group("player")
-@onready var vision = $Vision
+@onready var player_point: float = player_node.position.x
+@onready var distance_from_player: float = (position.x - player_point)
 
+@onready var vision = $Vision
 @onready var is_moving_right = true
 
 # Called when the node enters the scene tree for the first time.
@@ -25,8 +27,7 @@ func _process(delta):
 	if player_node:
 		$Vision.look_at(player_node.position)
 
-func _physics_process(delta):
-	
+func _physics_process(delta):	
 	if position.x >= end_point:
 		is_moving_right = false
 	elif position.x <= start_point:
@@ -35,6 +36,10 @@ func _physics_process(delta):
 		velocity.x = movement_speed
 	else:
 		velocity.x = -movement_speed
+	#if distance_from_player >= BLOCK_SIZE and distance_from_player <= BLOCK_SIZE*2:
+	#	velocity.x = -movement_speed
+	#elif distance_from_player >= -BLOCK_SIZE and distance_from_player <= -BLOCK_SIZE*2:
+	#	velocity.x = movement_speed
 	if not is_on_floor():
 		velocity.y += 512 * delta
 		

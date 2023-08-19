@@ -502,7 +502,7 @@ metadata/_edit_lock_ = true
 [node name="Screwling" parent="Field" instance=ExtResource("2_kany6")]
 position = Vector2(630, 259)
 
-[node name="Player" type="CharacterBody2D" parent="Field"]
+[node name="Player" type="CharacterBody2D" parent="Field" groups=["player"]]
 position = Vector2(192, 256)
 script = ExtResource("2_v21kg")
 
