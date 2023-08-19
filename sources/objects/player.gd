@@ -10,7 +10,6 @@ extends CharacterBody2D
 @onready var fall_gravity = float ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 
 func _physics_process(delta):
-	# Add the gravity.
 	if not is_on_floor():
 		if velocity.y < 0:
 			velocity.y += jump_gravity*delta

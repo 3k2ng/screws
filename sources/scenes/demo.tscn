@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://4l1345vcd266"]
+[gd_scene load_steps=8 format=3 uid="uid://4l1345vcd266"]
 
 [ext_resource type="Texture2D" uid="uid://c0uyh7kr8sr70" path="res://assets/sprites/autotile.png" id="1_g8yc0"]
 [ext_resource type="Texture2D" uid="uid://odxtkxa8eybn" path="res://icon.svg" id="1_ogyri"]
+[ext_resource type="PackedScene" uid="uid://d1mk60km0anic" path="res://sources/objects/screwling.tscn" id="2_kany6"]
 [ext_resource type="Script" path="res://sources/objects/player.gd" id="2_v21kg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5863n"]
@@ -498,8 +499,10 @@ format = 2
 layer_0/tile_data = PackedInt32Array(655360, 65536, 3, 655361, 131072, 3, 655362, 131072, 3, 655363, 131072, 3, 655364, 131072, 3, 655365, 131072, 3, 655366, 131072, 3, 655367, 131072, 3, 655368, 131072, 3, 655369, 131072, 3, 655370, 131072, 3, 655371, 131072, 3, 655372, 131072, 3, 655373, 131072, 3, 655374, 131072, 3, 655375, 131072, 3, 655376, 131072, 3, 655377, 131072, 3, 655378, 131072, 3, 655379, 196608, 3)
 metadata/_edit_lock_ = true
 
+[node name="Screwling" parent="Field" instance=ExtResource("2_kany6")]
+
 [node name="Player" type="CharacterBody2D" parent="Field"]
-position = Vector2(576, 128)
+position = Vector2(800, 220)
 script = ExtResource("2_v21kg")
 movement_speed = 256.0
 jump_height = 256.0
