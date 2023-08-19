@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 const BLOCK_SIZE: int = 128
 
-@export var extra_jumps: int = 2
+@export var extra_jumps: int = 0
 @onready var extra_jumps_left: int = 0
 
 @export var movement_speed_blocks: float = 4
@@ -40,13 +40,6 @@ func _ready() -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
-	if is_on_floor():
-		coyote_floor_timer = coyote_floor_time
-		extra_jumps_left = extra_jumps
-
-	if is_on_wall():
-		coyote_wall_timer = coyote_wall_time
-		extra_jumps_left = extra_jumps
 	
 	var direction = Input.get_axis("move_left", "move_right")
 	if wall_bounce_timer > 0:
@@ -56,6 +49,14 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction * movement_speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, movement_speed)
+	
+	if is_on_floor():
+		coyote_floor_timer = coyote_floor_time
+		extra_jumps_left = extra_jumps
+
+	if is_on_wall_only() && direction:
+		coyote_wall_timer = coyote_wall_time
+		extra_jumps_left = extra_jumps
 	
 	if Input.is_action_just_pressed("jump"):
 		jump_buffer_timer = jump_buffer_time
@@ -78,7 +79,7 @@ func _physics_process(delta: float) -> void:
 	# Update gravity
 	if velocity.y >= 0:
 		# Cap gravity at wall slide speed if touching wall
-		if is_on_wall() and (Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left")):
+		if is_on_wall_only() and (Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left")):
 			velocity.y = minf(velocity.y + fall_gravity * delta, wall_slide_speed)
 		else:
 			velocity.y = minf(velocity.y + fall_gravity * delta, max_fall_speed)
