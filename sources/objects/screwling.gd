@@ -1,7 +1,12 @@
 extends CharacterBody2D
 
-@export var movement_speed: float = 128
-@export var moving_distance: float = 512
+const BLOCK_SIZE: int = 128
+
+@export var movement_speed_blocks: float = 1
+@export var moving_distance_blocks: float = 4
+
+@onready var movement_speed: float = movement_speed_blocks*BLOCK_SIZE
+@onready var moving_distance: float = moving_distance_blocks*BLOCK_SIZE
 
 @onready var start_point: float = global_position.x
 @onready var end_point: float = global_position.x + moving_distance
