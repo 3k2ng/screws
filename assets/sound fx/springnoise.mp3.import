@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://8kj81doopfyd"
+path="res://.godot/imported/springnoise.mp3-25b739893c983d2d64ad5c59aab35754.mp3str"
+
+[deps]
+
+source_file="res://assets/sound fx/springnoise.mp3"
+dest_files=["res://.godot/imported/springnoise.mp3-25b739893c983d2d64ad5c59aab35754.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
