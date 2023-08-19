@@ -501,6 +501,10 @@ metadata/_edit_lock_ = true
 [node name="Player" type="CharacterBody2D" parent="Field"]
 position = Vector2(576, 128)
 script = ExtResource("2_v21kg")
+movement_speed = 256.0
+jump_height = 256.0
+jump_time_to_peak = 0.5
+jump_time_to_descent = 0.3
 
 [node name="Sprite" type="Sprite2D" parent="Field/Player"]
 texture = ExtResource("1_ogyri")
