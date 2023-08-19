@@ -29,8 +29,9 @@ const BLOCK_SIZE: int = 128
 
 @export var coyote_wall_time: float = 0.16
 @onready var coyote_wall_timer: float = 0.0
+@onready var wall_normal_x: float = 0.0
 
-@export var jump_buffer_time: float = 0.16
+@export var jump_buffer_time: float = 0.2
 @onready var jump_buffer_timer: float = 0.0
 
 @export var wall_bounce_time: float = 0.16
@@ -57,6 +58,7 @@ func _physics_process(delta: float) -> void:
 	if is_on_wall_only() && direction:
 		coyote_wall_timer = coyote_wall_time
 		extra_jumps_left = extra_jumps
+		wall_normal_x = get_slide_collision(0).get_normal().x
 	
 	if Input.is_action_just_pressed("jump"):
 		jump_buffer_timer = jump_buffer_time
@@ -65,14 +67,17 @@ func _physics_process(delta: float) -> void:
 	if jump_buffer_timer > 0 and (coyote_floor_timer > 0 or coyote_wall_timer > 0 or extra_jumps_left > 0):
 		# coyote_wall_timer means wall jump
 		if coyote_wall_timer > 0:
-			if Input.is_action_pressed("move_right"):
+			if wall_normal_x < 0:
 				velocity.x = -wall_bounce
 				wall_bounce_timer = wall_bounce_time
-			elif Input.is_action_pressed("move_left"):
+			elif wall_normal_x > 0:
 				velocity.x = wall_bounce
 				wall_bounce_timer = wall_bounce_time
+			coyote_wall_timer = 0
 		elif coyote_floor_timer <= 0:
 			extra_jumps_left -= 1
+		else:
+			coyote_floor_timer = 0
 		velocity.y = jump_velocity
 		jump_buffer_timer = 0
 	
