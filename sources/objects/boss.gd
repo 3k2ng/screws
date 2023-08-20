@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal win
+
 var state
 enum{IDLE, CHARGE, PATROL, STUNNED, SHOOT_TOAST, HAPPY, JUMP}
 const BLOCK_SIZE: int = 128
@@ -15,7 +17,7 @@ const BLOCK_SIZE: int = 128
 @onready var player_node = get_tree().get_first_node_in_group("player")
 
 @onready var floor_toast_spawner = preload("res://sources/objects/floor_toast_spawner.tscn")
-
+@onready var wall_toast = preload("res://sources/objects/wall_toast.tscn")
 @onready var is_moving_right = true
 var stun_timer = 0
 
@@ -94,10 +96,8 @@ func _process(delta):
 			return
 		var rng = RandomNumberGenerator.new()
 		var ran = 0
-		if player_node && player_node.is_on_floor():
-			ran = rng.randi_range(1,3)
-		else:
-			ran = randi_range(1,2)
+		ran = rng.randi_range(1,3)
+		
 		
 		if ran == 3:
 			var relative_position_x : float = (player_node.global_position.x - global_position.x)
@@ -198,6 +198,8 @@ func _physics_process(delta):
 		#charge_noise.play()
 		velocity.x =  charge_dir * movement_speed*3.5
 		if is_on_wall():
+			var wall_normal_x = get_slide_collision(0).get_normal().x
+			toast_circle(wall_normal_x)
 			state = STUNNED
 			stun_timer = 1
 		pass
@@ -226,10 +228,33 @@ func _physics_process(delta):
 			num_toast = toast_shoot_dur_max/toast_shoot_delay_max
 			state = PATROL
 			attack_timer = 2
-		
+	
+	
 	if not is_on_floor():
 		velocity.y += 512 * 1.5 * delta
 	move_and_slide()
+
+func toast_circle(normal):
+	var angle_from = 180 * normal
+	
+	var angle_to = 90 * normal
+	
+	var cur_angle = angle_from
+	
+	var num_toasts = 7
+	
+	for i in range(0, num_toasts):
+		
+		var ntoast = wall_toast.instantiate()
+		ntoast.position = self.position
+		
+		var direction = Vector2(-normal * cos(deg_to_rad(cur_angle)), sin(deg_to_rad(cur_angle)))
+		ntoast.dir = direction
+		cur_angle += normal * (angle_to / num_toasts)
+		
+		self.get_parent().add_child(ntoast)
+	
+	
 	
 func on_shot():
 	if player_node.position.x > self.position.x:
@@ -239,6 +264,7 @@ func on_shot():
 			
 	if $Screw2.position.x <= 40 && $Screw.position.x >= -40:
 		state = HAPPY
+		win.emit()
 	pass
 
 func shoot_toast():
