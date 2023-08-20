@@ -14,6 +14,7 @@ const BLOCK_SIZE: int = 128
 @export var jump_time_to_descent : float = 0.4
 
 @onready var jump_noise = $JumpNoise
+@onready var shoot_noise = $ShootNoise
 
 @onready var nail_bullet = preload("res://sources/objects/nail_bullet.tscn")
 
@@ -147,8 +148,10 @@ func movement(delta):
 func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("shoot"):
+		shoot_noise.play()
 		is_shooting = true
 	if Input.is_action_just_released("shoot"):
+		shoot_noise.play()
 		is_shooting = false
 	
 	if state == DASH:
