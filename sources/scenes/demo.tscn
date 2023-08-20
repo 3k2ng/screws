@@ -500,6 +500,8 @@ layer_0/tile_data = PackedInt32Array(393222, 327680, 2, 458758, 524288, 3, 52429
 metadata/_edit_lock_ = true
 
 [node name="Player" parent="Field" instance=ExtResource("3_86c4h")]
+dash_length_blocks = 2.0
+dash_speed_blocks_per_second = 8.0
 
 [node name="Screwling" parent="Field" instance=ExtResource("2_kany6")]
 position = Vector2(630, 259)

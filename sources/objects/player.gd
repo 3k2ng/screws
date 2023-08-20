@@ -49,6 +49,10 @@ const BLOCK_SIZE: int = 128
 @onready var dash_timer_max: float = dash_length/dash_speed
 @onready var dash_timer: float = 0.0
 
+@export var dash_buffer_timer_max:float = 1
+@onready var dash_buffer_timer:float = 0
+
+
 enum{DASH,FREE}
 
 var direction = 0
@@ -85,10 +89,16 @@ func movement(delta):
 		extra_jumps_left = extra_jumps
 		wall_normal_x = get_slide_collision(0).get_normal().x
 	
-	if Input.is_action_just_pressed("dash") and direction:
+	if Input.is_action_just_pressed("dash") && dash_buffer_timer <= 0:
+		if direction == 0:
+			if $Sprite.flip_h == false:
+				direction = -1
+			else:
+				direction = 1
 		velocity.x = dash_speed * direction
 		velocity.y = 0
 		dash_timer = dash_timer_max
+		dash_buffer_timer = dash_buffer_timer_max
 		state = DASH
 		return
 		
@@ -155,6 +165,9 @@ func _physics_process(delta: float) -> void:
 		
 	if dash_timer > 0:
 		dash_timer -= delta
+		
+	if dash_buffer_timer > 0:
+		dash_buffer_timer -= delta
 
 func dash_anim():
 	pass
