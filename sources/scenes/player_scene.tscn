@@ -162,7 +162,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cq4oj"]
-size = Vector2(32, 80)
+size = Vector2(64, 80)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 position = Vector2(192, 256)
