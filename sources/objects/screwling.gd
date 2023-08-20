@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var state
-enum{APPROACHING, PATROL, HAPPY}
+enum{APPROACHING, PATROL, HAPPY, IDLE}
 const BLOCK_SIZE: int = 128
 const screwling_health = 3
 var screwling_health_counter = 0
@@ -23,6 +23,13 @@ var screwling_health_counter = 0
 @onready var nail_node = get_tree().get_first_node_in_group("nail")
 @onready var is_moving_right = true
 
+@export var button_pair:Node2D
+
+@onready var screw = preload("res://sources/objects/screw.tscn")
+
+
+var health = 5
+var happy_timer = 0
 var transition_timer = 0
 
 # Called when the node enters the scene tree for the first time.
@@ -60,16 +67,40 @@ func see_player():
 	return
 
 func _process(delta):
-	see_player()
-	
-	if transition_timer >= 0:
-		transition_timer -= delta
+	if state != HAPPY && state != IDLE:
+		see_player()
+		
+		if transition_timer >= 0:
+			transition_timer -= delta
+		
 	pass
 
 func _physics_process(delta):
 	var relative_position_x : float = (player_node.global_position.x - global_position.x)
-	if screwling_health == screwling_health_counter:
-		state = HAPPY
+
+	if state == IDLE:
+		$AnimatedSprite2D.play("idle")
+
+	if state == HAPPY:
+		if happy_timer <= 0:
+			$AnimatedSprite2D.play("happy")
+			if button_pair != null:
+				if button_pair.position.x > self.position.x:
+					$AnimatedSprite2D.flip_h = true
+					velocity.x = movement_speed
+				elif button_pair.position.x < self.position.x:
+					$AnimatedSprite2D.flip_h = false
+					velocity.x = -movement_speed
+					
+				if self.position.x >= button_pair.position.x-5 && self.position.x <= button_pair.position.x+5:
+					state = IDLE
+					velocity.x = 0
+					button_pair.press()
+		else:
+			velocity.x = 0
+			$AnimatedSprite2D.play("idle")
+			happy_timer -= delta
+
 	if state == PATROL:
 		$AnimatedSprite2D.play("patrol")
 		if position.x >= end_point || (is_on_wall() && is_moving_right):
@@ -97,8 +128,27 @@ func _physics_process(delta):
 	move_and_slide()
 
 func on_shot():
-	hurt_noise.play()
-	screwling_health_counter = screwling_health_counter+1
+	if state != HAPPY && state != IDLE:
+		
+		for i in range(1, health):
+			var rng = RandomNumberGenerator.new()
+			var nscrew = screw.instantiate()
+			
+			var angle = deg_to_rad(randf_range(-45, 45) - 90)
+			
+			nscrew.position = self.position - Vector2(0, 10)
+			
+			var direction = Vector2(cos(angle), sin(angle))
+			
+			nscrew.set_dir(direction)
+			
+			self.get_parent().add_child(nscrew)
+		
+		hurt_noise.play()
+		health -= 1
+		if health <= 0:
+			happy_timer = 2
+			state = HAPPY
 	
 func _on_area_2d_body_entered(body):
 	if state == APPROACHING:

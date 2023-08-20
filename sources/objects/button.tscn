@@ -1,21 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://bsb0oiephq2dp"]
+[gd_scene load_steps=7 format=3 uid="uid://bsb0oiephq2dp"]
 
 [ext_resource type="Texture2D" uid="uid://d4jqwcrj3kwlw" path="res://assets/sprites/pressure_plate.png" id="1_640yh"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c2pkj"]
-atlas = ExtResource("1_640yh")
-region = Rect2(0, 0, 64, 64)
+[ext_resource type="Script" path="res://sources/objects/button.gd" id="1_ylvfi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2eiy8"]
 atlas = ExtResource("1_640yh")
 region = Rect2(64, 0, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_bovon"]
+atlas = ExtResource("1_640yh")
+region = Rect2(0, 0, 64, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_wcrwd"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c2pkj")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2eiy8")
 }],
@@ -23,7 +21,10 @@ animations = [{
 "name": &"hit",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bovon")
+}],
 "loop": true,
 "name": &"unhit",
 "speed": 5.0
@@ -33,10 +34,11 @@ animations = [{
 size = Vector2(53, 30)
 
 [node name="button" type="Node2D"]
+script = ExtResource("1_ylvfi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wcrwd")
-animation = &"hit"
+animation = &"unhit"
 
 [node name="Area2D" type="Area2D" parent="."]
 
