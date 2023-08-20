@@ -1,11 +1,15 @@
 extends CharacterBody2D
 
 var state
-enum{APPROACHING, PATROL}
+enum{APPROACHING, PATROL, HAPPY}
 const BLOCK_SIZE: int = 128
+const screwling_health = 3
+var screwling_health_counter = 0
 
 @export var sight_dist_blocks:int = 3
 @onready var sight_dist = sight_dist_blocks * BLOCK_SIZE
+
+@onready var hurt_noise = $HurtNoise
 
 @export var movement_speed_blocks: float = 1
 @export var moving_distance_blocks: float = 4
@@ -16,7 +20,7 @@ const BLOCK_SIZE: int = 128
 @onready var start_point: float = global_position.x
 @onready var end_point: float = global_position.x + moving_distance
 @onready var player_node = get_tree().get_first_node_in_group("player")
-
+@onready var nail_node = get_tree().get_first_node_in_group("nail")
 @onready var is_moving_right = true
 
 var transition_timer = 0
@@ -64,6 +68,8 @@ func _process(delta):
 
 func _physics_process(delta):
 	var relative_position_x : float = (player_node.global_position.x - global_position.x)
+	if screwling_health == screwling_health_counter:
+		state = HAPPY
 	if state == PATROL:
 		$AnimatedSprite2D.play("patrol")
 		if position.x >= end_point || is_on_wall():
@@ -84,8 +90,18 @@ func _physics_process(delta):
 		elif(relative_position_x > 0):
 			$AnimatedSprite2D.flip_h = true
 			velocity.x = movement_speed
+	elif state == HAPPY:
+		print("success")
 		pass
 	if not is_on_floor():
 		velocity.y += 512 * delta
 	move_and_slide()
+
+func on_shot():
+	screwling_health_counter = screwling_health_counter+1
 	
+func _on_area_2d_body_entered(body):
+	if state == APPROACHING:
+		if body == player_node:
+			body.hit(3.5 * velocity.x)
+	pass # Replace with function body.

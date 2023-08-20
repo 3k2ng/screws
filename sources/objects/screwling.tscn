@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://d1mk60km0anic"]
+[gd_scene load_steps=27 format=3 uid="uid://d1mk60km0anic"]
 
 [ext_resource type="Script" path="res://sources/objects/screwling.gd" id="1_grno4"]
 [ext_resource type="Texture2D" uid="uid://odxtkxa8eybn" path="res://icon.svg" id="2_ov2om"]
@@ -6,6 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://djr5k735jqyl8" path="res://assets/sprites/screwling/screwling_happy.png" id="4_vrykl"]
 [ext_resource type="Texture2D" uid="uid://7cgcp8ryf06o" path="res://assets/sprites/screwling/screwling_idle.png" id="5_c7arj"]
 [ext_resource type="Texture2D" uid="uid://q5ljny08tegv" path="res://assets/sprites/screwling/screwling_patrol.png" id="6_kpn52"]
+[ext_resource type="AudioStream" uid="uid://bh03va70xfqg0" path="res://assets/sound fx/deathnoise.mp3" id="7_1qk2j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n8qvs"]
+size = Vector2(47, 46)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ktfgd"]
 size = Vector2(48, 46)
@@ -150,6 +154,14 @@ position = Vector2(576, 128)
 collision_layer = 4
 script = ExtResource("1_grno4")
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, 9)
+shape = SubResource("RectangleShape2D_n8qvs")
+
 [node name="Sprite" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("2_ov2om")
@@ -162,3 +174,8 @@ shape = SubResource("RectangleShape2D_ktfgd")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_u6vom")
 animation = &"happy"
+
+[node name="HurtNoise" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_1qk2j")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
