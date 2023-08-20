@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 const BLOCK_SIZE: int = 128
 
-@export var extra_jumps: int = 0
+@export var extra_jumps: int = 1
 @onready var extra_jumps_left: int = 0
 
 @export var movement_speed_blocks: float = 4
@@ -14,6 +14,8 @@ const BLOCK_SIZE: int = 128
 @export var jump_time_to_descent : float = 0.4
 
 @onready var jump_noise = $JumpNoise
+
+@onready var nail_bullet = preload("res://sources/objects/nail_bullet.tscn")
 
 @onready var jump_height: float = jump_height_blocks * BLOCK_SIZE
 @onready var wall_bounce: float = wall_bounce_blocks * BLOCK_SIZE
@@ -49,7 +51,7 @@ const BLOCK_SIZE: int = 128
 @onready var dash_timer_max: float = dash_length/dash_speed
 @onready var dash_timer: float = 0.0
 
-@export var dash_buffer_timer_max:float = 1
+@export var dash_buffer_timer_max:float = 0.6
 @onready var dash_buffer_timer:float = 0
 
 
@@ -63,7 +65,7 @@ func _ready() -> void:
 	
 func dash(delta):
 	
-	if is_on_wall() || dash_timer <= 0:
+	if is_on_wall() || dash_timer < 0 || ($Sprite.animation == "dash_end" &&  not $Sprite.is_playing()):
 		state = FREE
 		return
 		
@@ -150,6 +152,15 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
+	if Input.is_action_just_pressed("shoot"):
+		var nailbul = nail_bullet.instantiate()
+		nailbul.position = self.position
+		if $Sprite.flip_h == true:
+			nailbul.set_direction(1)
+		else:
+			nailbul.set_direction(-1)
+		self.get_parent().add_child(nailbul)
+	
 	# Update timers
 	if coyote_floor_timer > 0:
 		coyote_floor_timer -= delta
@@ -170,6 +181,10 @@ func _physics_process(delta: float) -> void:
 		dash_buffer_timer -= delta
 
 func dash_anim():
+	if dash_timer > 0:
+		$Sprite.play("dash")
+	#elif $Sprite.animation == "dash":
+	#	$Sprite.play("dash_end")
 	pass
 
 func movement_anim():

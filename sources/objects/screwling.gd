@@ -67,7 +67,6 @@ func _physics_process(delta):
 		elif(relative_position_x >= 0 and relative_position_x < 300):
 			velocity.x = movement_speed
 		pass
-	print(relative_position_x)
 	if not is_on_floor():
 		velocity.y += 512 * delta
 	move_and_slide()
