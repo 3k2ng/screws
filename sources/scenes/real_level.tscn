@@ -158,5 +158,6 @@ shape = SubResource("SegmentShape2D_wqpd6")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_jyr5i")
+autoplay = true
 
 [connection signal="body_entered" from="Field/BossTrigger" to="." method="start_boss"]
