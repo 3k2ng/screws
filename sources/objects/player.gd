@@ -39,10 +39,25 @@ const BLOCK_SIZE: int = 128
 @export var wall_bounce_time: float = 0.16
 @onready var wall_bounce_timer: float = 0.0
 
+@export var dash_timer_max: float = 0.16
+@onready var dash_timer: float = 0.0
+
+enum{DASH,FREE}
+
+var state = FREE
+
 func _ready() -> void:
 	pass
-
-func _physics_process(delta: float) -> void:
+	
+func dash(delta):
+	
+	if is_on_wall():
+		state = FREE
+		return
+		
+	return
+	
+func movement(delta):
 	
 	var direction = Input.get_axis("move_left", "move_right")
 	if wall_bounce_timer > 0:
@@ -62,10 +77,10 @@ func _physics_process(delta: float) -> void:
 		extra_jumps_left = extra_jumps
 		wall_normal_x = get_slide_collision(0).get_normal().x
 	
-	if Input.is_action_just_pressed("dash") and Input.is_action_just_pressed("move_right"):
-		velocity.x = BLOCK_SIZE*48
-	elif Input.is_action_just_pressed("dash") and Input.is_action_just_pressed("move_left"):
-		velocity.x = -BLOCK_SIZE*48
+	if Input.is_action_just_pressed("dash") and direction:
+		velocity.x = BLOCK_SIZE*10*direction
+		state = DASH
+		return
 		
 	if Input.is_action_just_pressed("jump"):
 		jump_noise.play()
@@ -102,6 +117,15 @@ func _physics_process(delta: float) -> void:
 			velocity.y = 0
 		else:
 			velocity.y += jump_gravity * delta
+
+func _physics_process(delta: float) -> void:
+	
+	if state == DASH:
+		dash(delta)
+		
+	if state == FREE:
+		movement(delta)
+	
 	
 	move_and_slide()
 	
@@ -117,3 +141,6 @@ func _physics_process(delta: float) -> void:
 	
 	if wall_bounce_timer > 0:
 		wall_bounce_timer -= delta
+		
+	if dash_timer > 0:
+		dash_timer -= delta
