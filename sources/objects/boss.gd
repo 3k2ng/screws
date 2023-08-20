@@ -34,7 +34,7 @@ var toast_x
 
 var start_pos
 
-var range = 9 * 64
+var range = 8 * 4 * 64
 
 var squish_timer = 0
 
