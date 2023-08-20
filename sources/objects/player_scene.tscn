@@ -17,7 +17,6 @@
 [ext_resource type="Texture2D" uid="uid://b1un0ncgi7tgi" path="res://assets/sprites/mechanic/mechanic_run_gun.png" id="10_rgbi3"]
 [ext_resource type="Texture2D" uid="uid://hjk07jw3tgxp" path="res://assets/sprites/mechanic/mechanic_slide_gun.png" id="12_7q458"]
 [ext_resource type="AudioStream" uid="uid://cp864uuye36xn" path="res://assets/sound fx/nailgunshoot2.mp3" id="16_vs81x"]
-[ext_resource type="PackedScene" uid="uid://lyfine1waeyu" path="res://sources/objects/HealthBar.tscn" id="18_wphqp"]
 [ext_resource type="AudioStream" uid="uid://de3h735ca4mj2" path="res://assets/sound fx/dashing.mp3" id="18_5dj2w"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i4qrk"]
@@ -439,7 +438,3 @@ stream = ExtResource("18_5dj2w")
 libraries = {
 "": SubResource("AnimationLibrary_10taa")
 }
-
-[node name="Life" parent="." instance=ExtResource("18_wphqp")]
-
-[connection signal="life_changed" from="." to="Life" method="_on_player_life_changed"]

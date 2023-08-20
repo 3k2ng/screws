@@ -153,6 +153,8 @@ func movement(delta):
 			velocity.y += jump_gravity * delta
 
 func _physics_process(delta: float) -> void:
+	if GameManage.game_started and position.y > 64 * BLOCK_SIZE:
+		GameManage.game_over()
 	
 	if Input.is_action_just_pressed("shoot"):
 		is_shooting = true
