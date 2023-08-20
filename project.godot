@@ -15,6 +15,10 @@ run/main_scene="res://sources/scenes/demo.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameManage="*res://sources/autoloads/game_manage.gd"
+
 [display]
 
 window/size/viewport_width=1280
