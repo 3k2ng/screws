@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var state
-enum{CHARGE, PATROL, STUNNED, SHOOT_TOAST, HAPPY, JUMP}
+enum{IDLE, CHARGE, PATROL, STUNNED, SHOOT_TOAST, HAPPY, JUMP}
 const BLOCK_SIZE: int = 128
 
 @export var movement_speed_blocks: float = 1.5
@@ -45,7 +45,7 @@ var attack_timer = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	start_pos = position
-	state = PATROL
+	state = IDLE
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
@@ -80,7 +80,15 @@ func see_player():
 	
 	return
 
+func enable():
+	if state == IDLE:
+		state = PATROL
+
 func _process(delta):
+	enable()
+	if state == IDLE:
+		return
+	
 	if state == PATROL:
 		if attack_timer > 0:
 			attack_timer -= delta

@@ -1,13 +1,13 @@
 extends Node2D
 
-var vy = -200
+var vy = -400
 var dir = 1
 
 func _process(delta):
 	position.y += vy * delta
 	vy += 512 * 2 * delta
 	
-	if vy > 200:
+	if vy > 400:
 		self.queue_free()
 		
 	
