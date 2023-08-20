@@ -55,7 +55,7 @@ const BLOCK_SIZE: int = 128
 @onready var dash_buffer_timer:float = 0
 
 
-enum{DASH,FREE}
+enum{DASH,FREE,HIT}
 
 var direction = 0
 var state = FREE
@@ -149,6 +149,12 @@ func _physics_process(delta: float) -> void:
 	if state == FREE:
 		movement(delta)
 		movement_anim()
+		
+	if state == HIT:
+		velocity.y += jump_gravity * delta
+		if velocity.y >= 0 && is_on_floor():
+			state = FREE
+			print("test")
 	
 	move_and_slide()
 	
@@ -209,3 +215,8 @@ func movement_anim():
 			$Sprite.play("fall")
 		else:
 			$Sprite.play("jump")
+
+func hit(knockback):
+	state = HIT
+	velocity.x = knockback
+	velocity.y = abs(knockback) * -2

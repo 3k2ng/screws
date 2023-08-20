@@ -81,6 +81,8 @@ func _physics_process(delta):
 	
 func _on_area_2d_body_entered(body):
 	if state == CHARGE:
+		if body == player_node:
+			body.hit(1.5 * velocity.x)
 		state = STUNNED
 		stun_timer = 5
 	pass # Replace with function body.
