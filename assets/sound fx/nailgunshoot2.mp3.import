@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cp864uuye36xn"
+path="res://.godot/imported/nailgunshoot2.mp3-c1f691da3145507dfb8ce1937531d35c.mp3str"
+
+[deps]
+
+source_file="res://assets/sound fx/nailgunshoot2.mp3"
+dest_files=["res://.godot/imported/nailgunshoot2.mp3-c1f691da3145507dfb8ce1937531d35c.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

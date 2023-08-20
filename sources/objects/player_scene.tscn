@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://3ecgptmh5ssx"]
+[gd_scene load_steps=57 format=3 uid="uid://3ecgptmh5ssx"]
 
 [ext_resource type="Script" path="res://sources/objects/player.gd" id="1_ml32f"]
 [ext_resource type="Texture2D" uid="uid://byf26u7ytckyk" path="res://assets/sprites/mechanic/mechanic_idle.png" id="2_5odl0"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://csxluqrc3f8na" path="res://assets/sprites/mechanic/mechanic_jump_gun.png" id="8_gwqwn"]
 [ext_resource type="Texture2D" uid="uid://b1un0ncgi7tgi" path="res://assets/sprites/mechanic/mechanic_run_gun.png" id="10_rgbi3"]
 [ext_resource type="Texture2D" uid="uid://hjk07jw3tgxp" path="res://assets/sprites/mechanic/mechanic_slide_gun.png" id="12_7q458"]
+[ext_resource type="AudioStream" uid="uid://cp864uuye36xn" path="res://assets/sound fx/nailgunshoot2.mp3" id="16_vs81x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_udsge"]
 atlas = ExtResource("2_h2y72")
@@ -393,3 +394,10 @@ metadata/_edit_lock_ = true
 [node name="JumpNoise" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_sk477")
 volume_db = 7.924
+
+[node name="ShootNoise" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_vs81x")
+volume_db = 16.865
+pitch_scale = 1.32
+max_distance = 1000.0
+attenuation = 0.25

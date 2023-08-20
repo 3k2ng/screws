@@ -7,6 +7,9 @@ const BLOCK_SIZE: int = 128
 @export var movement_speed_blocks: float = 1
 @export var moving_distance_blocks: float = 4
 
+@onready var charge_noise = $Charging
+@onready var hurt_noise = $HurtNoise
+
 @onready var movement_speed: float = movement_speed_blocks*BLOCK_SIZE
 @onready var moving_distance: float = moving_distance_blocks*BLOCK_SIZE
 
@@ -78,8 +81,8 @@ func _physics_process(delta):
 			$Sprite.flip_h = false
 			velocity.x = -movement_speed
 	elif state == CHARGE:
+		charge_noise.play()
 		velocity.x =  charge_dir * movement_speed*2.5
-		
 		if is_on_wall():
 			state = STUNNED
 			stun_timer = 5
@@ -95,6 +98,9 @@ func _physics_process(delta):
 		velocity.y += 512 * delta
 	move_and_slide()
 	
+func on_shot():
+	hurt_noise.play()
+
 func _on_area_2d_body_entered(body):
 	if state == CHARGE:
 		if body == player_node:
