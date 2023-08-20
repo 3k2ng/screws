@@ -1,7 +1,6 @@
-[gd_scene load_steps=27 format=3 uid="uid://d1mk60km0anic"]
+[gd_scene load_steps=26 format=3 uid="uid://d1mk60km0anic"]
 
 [ext_resource type="Script" path="res://sources/objects/screwling.gd" id="1_grno4"]
-[ext_resource type="Texture2D" uid="uid://odxtkxa8eybn" path="res://icon.svg" id="2_ov2om"]
 [ext_resource type="Texture2D" uid="uid://dcq0c28kg32oq" path="res://assets/sprites/screwling/screwling_angry.png" id="3_ucfdk"]
 [ext_resource type="Texture2D" uid="uid://djr5k735jqyl8" path="res://assets/sprites/screwling/screwling_happy.png" id="4_vrykl"]
 [ext_resource type="Texture2D" uid="uid://7cgcp8ryf06o" path="res://assets/sprites/screwling/screwling_idle.png" id="5_c7arj"]
@@ -46,19 +45,19 @@ region = Rect2(128, 0, 64, 64)
 atlas = ExtResource("4_vrykl")
 region = Rect2(192, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_s2154"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_34kdi"]
 atlas = ExtResource("5_c7arj")
 region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_km3ld"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4672"]
 atlas = ExtResource("5_c7arj")
 region = Rect2(64, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_i0qwu"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjn0p"]
 atlas = ExtResource("5_c7arj")
 region = Rect2(128, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ykdyh"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6uhh"]
 atlas = ExtResource("5_c7arj")
 region = Rect2(192, 0, 64, 64)
 
@@ -116,16 +115,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_s2154")
+"texture": SubResource("AtlasTexture_34kdi")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_km3ld")
+"texture": SubResource("AtlasTexture_c4672")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_i0qwu")
+"texture": SubResource("AtlasTexture_pjn0p")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ykdyh")
+"texture": SubResource("AtlasTexture_q6uhh")
 }],
 "loop": true,
 "name": &"idle",
@@ -162,18 +161,14 @@ collision_mask = 2
 position = Vector2(0.5, 9)
 shape = SubResource("RectangleShape2D_n8qvs")
 
-[node name="Sprite" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("2_ov2om")
-metadata/_edit_lock_ = true
-
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(1, 9)
 shape = SubResource("RectangleShape2D_ktfgd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_u6vom")
-animation = &"happy"
+animation = &"idle"
+frame_progress = 0.0300591
 
 [node name="HurtNoise" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_1qk2j")
