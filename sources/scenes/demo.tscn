@@ -1,13 +1,32 @@
-[gd_scene load_steps=7 format=3 uid="uid://4l1345vcd266"]
+[gd_scene load_steps=9 format=3 uid="uid://4l1345vcd266"]
 
 [ext_resource type="TileSet" uid="uid://bq2ed7oa8kaw1" path="res://assets/tilesets/bg.tres" id="1_a5nrs"]
 [ext_resource type="PackedScene" uid="uid://d1mk60km0anic" path="res://sources/objects/screwling.tscn" id="2_kany6"]
 [ext_resource type="PackedScene" uid="uid://3ecgptmh5ssx" path="res://sources/objects/player_scene.tscn" id="3_86c4h"]
 [ext_resource type="TileSet" uid="uid://ctiu66fe7l3rj" path="res://assets/tilesets/metal_tiles.tres" id="4_aqeo7"]
 [ext_resource type="PackedScene" uid="uid://bsb0oiephq2dp" path="res://sources/objects/button.tscn" id="5_fp4o7"]
-[ext_resource type="TileSet" uid="uid://bibna7e7bjp75" path="res://assets/tilesets/wire.tres" id="6_kn8mx"]
+[ext_resource type="TileSet" uid="uid://bkqsoh5r7r38o" path="res://assets/tilesets/wire.tres" id="6_kn8mx"]
+[ext_resource type="AudioStream" uid="uid://dfyvf0ydqlr6w" path="res://assets/Screws_Loose_Oh_No_How_Could_This_Happen (1).ogg" id="7_r3d6y"]
+
+[sub_resource type="GDScript" id="GDScript_1ue0w"]
+script/source = "extends Node
+
+
+@onready var play_music = $MainTrack
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	play_music.play()
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
 
 [node name="Demo" type="Node"]
+script = SubResource("GDScript_1ue0w")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -41,10 +60,13 @@ position = Vector2(-149, 439)
 dash_length_blocks = 2.0
 dash_speed_blocks_per_second = 8.0
 
-[node name="button1" parent="Field" node_paths=PackedStringArray("wire") instance=ExtResource("5_fp4o7")]
+[node name="button1" parent="Field" instance=ExtResource("5_fp4o7")]
 position = Vector2(934, 478)
-wire = NodePath("../wire1")
 
 [node name="Screwling" parent="Field" node_paths=PackedStringArray("button_pair") instance=ExtResource("2_kany6")]
 position = Vector2(433, 477)
 button_pair = NodePath("../button1")
+
+[node name="MainTrack" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_r3d6y")
+volume_db = 14.054
