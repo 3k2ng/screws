@@ -23,8 +23,6 @@ var screwling_health_counter = 0
 @onready var nail_node = get_tree().get_first_node_in_group("nail")
 @onready var is_moving_right = true
 
-@export var button_pair:Node2D
-
 var transition_timer = 0
 
 # Called when the node enters the scene tree for the first time.

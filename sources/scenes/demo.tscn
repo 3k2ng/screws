@@ -1,11 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://4l1345vcd266"]
 
-<<<<<<< Updated upstream
 [ext_resource type="TileSet" uid="uid://bobsvmfwerk2a" path="res://assets/tilesets/bg.tres" id="1_a5nrs"]
-=======
-[ext_resource type="TileSet" uid="uid://bq2ed7oa8kaw1" path="res://assets/tilesets/bg.tres" id="1_a5nrs"]
-[ext_resource type="PackedScene" uid="uid://dirclufgv8xyr" path="res://sources/objects/rumba.tscn" id="1_ym6od"]
->>>>>>> Stashed changes
 [ext_resource type="PackedScene" uid="uid://d1mk60km0anic" path="res://sources/objects/screwling.tscn" id="2_kany6"]
 [ext_resource type="PackedScene" uid="uid://3ecgptmh5ssx" path="res://sources/objects/player_scene.tscn" id="3_86c4h"]
 [ext_resource type="TileSet" uid="uid://ctiu66fe7l3rj" path="res://assets/tilesets/metal_tiles.tres" id="4_aqeo7"]
@@ -23,7 +18,7 @@ layer_0/tile_data = PackedInt32Array(0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 65539, 
 [node name="Field" type="Node2D" parent="."]
 
 [node name="Player" parent="Field" instance=ExtResource("3_86c4h")]
-position = Vector2(-299, 440)
+position = Vector2(318, 179)
 dash_length_blocks = 2.0
 dash_speed_blocks_per_second = 8.0
 
@@ -33,4 +28,4 @@ position = Vector2(605, 422)
 [node name="TileMap" type="TileMap" parent="Field"]
 tile_set = ExtResource("4_aqeo7")
 format = 2
-layer_0/tile_data = PackedInt32Array(589820, 196608, 3, 589821, 65537, 3, 589822, 196609, 3, 589823, 0, 3, 524288, 65537, 3, 524290, 0, 3, 524289, 196609, 3, 524292, 196609, 3, 524291, 65537, 3, 524293, 0, 3, 524295, 196609, 3, 524294, 65537, 3, 524296, 0, 3, 524297, 65537, 3, 524298, 196609, 3, 524299, 0, 3, 524300, 65537, 3, 524301, 196609, 3, 524302, 0, 3, 524303, 524289, 3, 524304, 720897, 3, 458768, 720897, 2, 393232, 720897, 2, 327696, 720897, 2, 262160, 720897, 2, 196624, 720897, 0, 589819, 131072, 3, 589818, 131072, 3, 589817, 65536, 2, 524281, 0, 1, 458745, 0, 1, 393209, 0, 1, 327673, 0, 1, 262137, 0, 0, 393227, 1, 2, 327691, 1, 1, 262155, 1, 1, 196619, 65537, 0, 196620, 131073, 3, 196621, 131073, 3, 196622, 131073, 3, 196623, 327681, 0, 262159, 524289, 1, 327695, 524289, 1, 393231, 524289, 1, 458767, 524289, 1, 196616, 196609, 3, 196615, 65537, 3)
+layer_0/tile_data = PackedInt32Array(589820, 0, 3, 589821, 65537, 3, 589822, 196609, 3, 589823, 0, 3, 524288, 65537, 3, 524290, 0, 3, 524289, 196609, 3, 524292, 196609, 3, 524291, 65537, 3, 524293, 0, 2, 524295, 196609, 3, 524294, 65537, 3, 524296, 0, 3, 524297, 65537, 3, 524298, 196609, 3, 524299, 0, 3, 524300, 65537, 3, 524301, 196609, 3, 524302, 65536, 3, 524303, 131072, 3, 524304, 196608, 2, 458768, 0, 1, 393232, 0, 1, 327696, 0, 1, 262160, 0, 1, 196624, 0, 0, 458755, 0, 2, 393219, 0, 1, 327683, 0, 0, 458757, 0, 1, 393221, 0, 0, 458759, 0, 3)

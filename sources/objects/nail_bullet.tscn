@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yu1f7"]
 size = Vector2(34, 9)
 
-[node name="nail_bullet" type="Node2D"]
+[node name="nail_bullet" type="Node2D" groups=["nail"]]
 script = ExtResource("1_vps0x")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -18,7 +18,7 @@ shape = SubResource("RectangleShape2D_yu1f7")
 
 [node name="Line2D" type="Line2D" parent="."]
 points = PackedVector2Array(16, 0, -16, 0)
-width = 4.0
+width = 8.0
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(31, 0)
