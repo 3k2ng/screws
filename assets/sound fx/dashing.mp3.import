@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://de3h735ca4mj2"
+path="res://.godot/imported/dashing.mp3-5d604ba3f7b8d9483b208ea458624eed.mp3str"
+
+[deps]
+
+source_file="res://assets/sound fx/dashing.mp3"
+dest_files=["res://.godot/imported/dashing.mp3-5d604ba3f7b8d9483b208ea458624eed.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -15,6 +15,7 @@ const BLOCK_SIZE: int = 128
 
 @onready var jump_noise = $JumpNoise
 @onready var shoot_noise = $ShootNoise
+@onready var dash_noise = $Dashing
 
 @onready var nail_bullet = preload("res://sources/objects/nail_bullet.tscn")
 
@@ -216,6 +217,7 @@ func _physics_process(delta: float) -> void:
 func dash_anim():
 	if dash_timer > 0:
 		$Sprite.play("dash")
+		dash_noise.play()
 	#elif $Sprite.animation == "dash":
 	#	$Sprite.play("dash_end")
 	pass
