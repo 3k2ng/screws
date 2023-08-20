@@ -13,6 +13,7 @@
 position = Vector2(2001, 320)
 
 [node name="Player" parent="Field" instance=ExtResource("3_86c4h")]
+position = Vector2(318, 179)
 dash_length_blocks = 2.0
 dash_speed_blocks_per_second = 8.0
 
