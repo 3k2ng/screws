@@ -4,6 +4,9 @@ var state
 enum{APPROACHING, PATROL}
 const BLOCK_SIZE: int = 128
 
+@export var sight_dist_blocks:int = 3
+@onready var sight_dist = sight_dist_blocks * BLOCK_SIZE
+
 @export var movement_speed_blocks: float = 1
 @export var moving_distance_blocks: float = 4
 
@@ -16,9 +19,11 @@ const BLOCK_SIZE: int = 128
 
 @onready var is_moving_right = true
 
+var transition_timer = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	velocity.x = movement_speed
+	state =PATROL
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
@@ -38,33 +43,46 @@ func see_player():
 		
 	var relative_position_x : float = (player_node.global_position.x - global_position.x)
 	
-	if abs(relative_position_x) > 300:
+	if abs(relative_position_x) > sight_dist:
 		state = PATROL
 		return
-		
+	
+	if transition_timer >= 0:
+		return
+	
+	transition_timer = 5
 	state = APPROACHING	
 	
 	return
 
 func _process(delta):
 	see_player()
+	
+	if transition_timer >= 0:
+		transition_timer -= delta
 	pass
 
 func _physics_process(delta):
 	var relative_position_x : float = (player_node.global_position.x - global_position.x)
 	if state == PATROL:
-		if position.x >= end_point:
+		$AnimatedSprite2D.play("patrol")
+		if position.x >= end_point || is_on_wall():
 			is_moving_right = false
-		elif position.x <= start_point:
+		elif position.x <= start_point || is_on_wall():
 			is_moving_right = true
 		if is_moving_right:
+			$AnimatedSprite2D.flip_h = true
 			velocity.x = movement_speed
 		else:
+			$AnimatedSprite2D.flip_h = false
 			velocity.x = -movement_speed
 	elif state == APPROACHING:
-		if(relative_position_x >= -300 and relative_position_x < 0):
+		$AnimatedSprite2D.play("angy")
+		if(relative_position_x < 0):
+			$AnimatedSprite2D.flip_h = false
 			velocity.x = -movement_speed
-		elif(relative_position_x >= 0 and relative_position_x < 300):
+		elif(relative_position_x > 0):
+			$AnimatedSprite2D.flip_h = true
 			velocity.x = movement_speed
 		pass
 	if not is_on_floor():
