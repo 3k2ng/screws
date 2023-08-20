@@ -54,6 +54,10 @@ const BLOCK_SIZE: int = 128
 @export var dash_buffer_timer_max:float = 0.6
 @onready var dash_buffer_timer:float = 0
 
+@export var shoot_timer_max:float = 0.6
+@onready var shoot_timer:float = 0
+
+var is_shooting = false
 
 enum{DASH,FREE,HIT}
 
@@ -142,6 +146,11 @@ func movement(delta):
 
 func _physics_process(delta: float) -> void:
 	
+	if Input.is_action_just_pressed("shoot"):
+		is_shooting = true
+	if Input.is_action_just_released("shoot"):
+		is_shooting = false
+	
 	if state == DASH:
 		dash(delta)
 		dash_anim()
@@ -158,7 +167,8 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
-	if Input.is_action_just_pressed("shoot"):
+	if is_shooting && shoot_timer <= 0 && state != HIT:
+		shoot_timer = shoot_timer_max
 		var nailbul = nail_bullet.instantiate()
 		nailbul.position = self.position
 		nailbul.position.y += 20
@@ -169,8 +179,13 @@ func _physics_process(delta: float) -> void:
 			nailbul.position.x -= 20
 			nailbul.set_direction(-1)
 		self.get_parent().add_child(nailbul)
+		
+		
 	
 	# Update timers
+	if shoot_timer > 0:
+		shoot_timer -= delta
+	
 	if coyote_floor_timer > 0:
 		coyote_floor_timer -= delta
 	
@@ -202,24 +217,30 @@ func movement_anim():
 	elif velocity.x < 0:
 		$Sprite.flip_h = false
 	
+	var bleh = ""
+	
+	if is_shooting:
+		bleh = "_gun"
+	
 	if is_on_floor():
 		if velocity.x == 0:
-			$Sprite.play("idle")
+			$Sprite.play("idle" + bleh)
 		else:
-			$Sprite.play("walk")
+			$Sprite.play("walk" + bleh)
 	elif velocity.y > 0 && is_on_wall_only() && (Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left")):
-		$Sprite.play("wall")
+		$Sprite.play("wall" + bleh)
 		if wall_normal_x < 0:
 			$Sprite.flip_h = false
 		else:
 			$Sprite.flip_h = true		
 	else:
 		if velocity.y >= 0:
-			$Sprite.play("fall")
+			$Sprite.play("fall" + bleh)
 		else:
-			$Sprite.play("jump")
+			$Sprite.play("jump" + bleh)
 
 func hit(knockback):
+	$Sprite.play("hurt")
 	state = HIT
 	velocity.x = knockback
 	
