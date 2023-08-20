@@ -1,8 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://2am4n5y2dgg2"]
+[gd_scene load_steps=6 format=3 uid="uid://2am4n5y2dgg2"]
 
 [ext_resource type="Script" path="res://sources/objects/title_screen.gd" id="1_w61co"]
 [ext_resource type="TileSet" uid="uid://bq2ed7oa8kaw1" path="res://assets/tilesets/bg.tres" id="2_imlr5"]
 [ext_resource type="Texture2D" uid="uid://d1yc77ifjqfxw" path="res://assets/sprites/Cool Text - SCREWS 441416979822876.png" id="2_vq8wm"]
+
+[sub_resource type="FontFile" id="FontFile_v807e"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
 [sub_resource type="ImageTexture" id="ImageTexture_qi2up"]
 
@@ -47,9 +55,11 @@ texture = ExtResource("2_vq8wm")
 [node name="Play" type="Button" parent="Panel/VBoxContainer"]
 modulate = Color(1, 0.458824, 0.364706, 1)
 layout_mode = 2
+theme_override_fonts/font = SubResource("FontFile_v807e")
 text = "PLAY
 "
 icon = SubResource("ImageTexture_qi2up")
 icon_alignment = 1
+vertical_icon_alignment = 0
 
 [connection signal="pressed" from="Panel/VBoxContainer/Play" to="." method="_on_play_pressed"]

@@ -1,9 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://dirclufgv8xyr"]
+[gd_scene load_steps=17 format=3 uid="uid://dirclufgv8xyr"]
 
 [ext_resource type="Script" path="res://sources/objects/roomba.gd" id="1_wqtbi"]
 [ext_resource type="Texture2D" uid="uid://dxumk0cbbst0i" path="res://assets/sprites/roomba/roomba_angry.png" id="2_eyt3s"]
 [ext_resource type="Texture2D" uid="uid://bwlp11lwtokq0" path="res://assets/sprites/roomba/roomba_stun.png" id="3_uk6xr"]
 [ext_resource type="Texture2D" uid="uid://bsto23nd758x0" path="res://assets/sprites/roomba/roomba_patrol.png" id="4_0n466"]
+[ext_resource type="AudioStream" uid="uid://cm6xs1mq505nb" path="res://assets/sound fx/nailgunshoot.mp3" id="5_lj41g"]
+[ext_resource type="AudioStream" uid="uid://bh03va70xfqg0" path="res://assets/sound fx/deathnoise.mp3" id="6_wm7d6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ktfgd"]
 size = Vector2(110, 53)
@@ -104,5 +106,17 @@ metadata/_edit_lock_ = true
 position = Vector2(1, 37.5)
 shape = SubResource("RectangleShape2D_ktfgd")
 metadata/_edit_lock_ = true
+
+[node name="Charging" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_lj41g")
+volume_db = 2.0
+pitch_scale = 0.89
+max_polyphony = 4
+panning_strength = 3.0
+
+[node name="HurtNoise" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_wm7d6")
+volume_db = 0.035
+pitch_scale = 0.71
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
