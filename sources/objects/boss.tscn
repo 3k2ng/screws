@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://bc5503xjg0bks"]
+[gd_scene load_steps=18 format=3 uid="uid://bc5503xjg0bks"]
 
 [ext_resource type="Texture2D" uid="uid://d3fftuoelaju8" path="res://assets/sprites/toaster/toaster.png" id="1_j8omb"]
 [ext_resource type="Script" path="res://sources/objects/boss.gd" id="1_sswnv"]
+[ext_resource type="Texture2D" uid="uid://be2v24s61bu1t" path="res://assets/sprites/screw.png" id="3_6pdt7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r13yy"]
 size = Vector2(106, 78)
@@ -120,6 +121,16 @@ script = ExtResource("1_sswnv")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 25)
 shape = SubResource("RectangleShape2D_r13yy")
+
+[node name="Screw2" type="Sprite2D" parent="."]
+position = Vector2(60, 27)
+rotation = 1.43641
+texture = ExtResource("3_6pdt7")
+
+[node name="Screw" type="Sprite2D" parent="."]
+position = Vector2(-60, 27)
+rotation = -1.65806
+texture = ExtResource("3_6pdt7")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2hu65")

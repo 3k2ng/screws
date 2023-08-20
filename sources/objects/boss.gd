@@ -4,7 +4,7 @@ var state
 enum{CHARGE, PATROL, STUNNED, SHOOT_TOAST}
 const BLOCK_SIZE: int = 128
 
-@export var movement_speed_blocks: float = 2
+@export var movement_speed_blocks: float = 1.5
 @export var moving_distance_blocks: float = 4
 
 @onready var movement_speed: float = movement_speed_blocks*BLOCK_SIZE
@@ -24,12 +24,15 @@ var toast_shoot_dur = 0
 var toast_shoot_delay_max = 0.2
 var toast_shoot_delay = 0
 
+var start_pos
+
 var attack_timer = 0
 
 @onready var toast_bullet = preload("res://sources/objects/toast_bullet.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	start_pos = position
 	state = PATROL
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -145,6 +148,7 @@ func on_shot():
 func shoot_toast():
 	var ntoast = toast_bullet.instantiate()
 	ntoast.position = self.position
+	ntoast.bsp = start_pos
 	self.get_parent().add_child(ntoast)
 
 func _on_area_2d_body_entered(body):

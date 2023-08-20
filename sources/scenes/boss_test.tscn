@@ -18,7 +18,7 @@ layer_0/tile_data = PackedInt32Array(0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 65539, 
 [node name="Field" type="Node2D" parent="."]
 
 [node name="boss" parent="Field" instance=ExtResource("4_ouygk")]
-position = Vector2(291, 434)
+position = Vector2(201, 449)
 
 [node name="TileMap" type="TileMap" parent="Field"]
 tile_set = ExtResource("2_ojbbo")
