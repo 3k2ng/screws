@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bdkluymqw33f"]
+
+[ext_resource type="TileSet" uid="uid://bq2ed7oa8kaw1" path="res://assets/tilesets/bg.tres" id="1_nii1b"]
+[ext_resource type="TileSet" uid="uid://ctiu66fe7l3rj" path="res://assets/tilesets/metal_tiles.tres" id="2_ojbbo"]
+[ext_resource type="PackedScene" uid="uid://3ecgptmh5ssx" path="res://sources/objects/player_scene.tscn" id="4_0croy"]
+[ext_resource type="PackedScene" uid="uid://bc5503xjg0bks" path="res://sources/objects/boss.tscn" id="4_ouygk"]
+
+[node name="Demo" type="Node"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Background" type="TileMap" parent="ParallaxBackground"]
+modulate = Color(0.498039, 0.498039, 0.498039, 1)
+tile_set = ExtResource("1_nii1b")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 65539, 0, 0, 65538, 0, 0, 65537, 0, 0, 65536, 0, 0, -65533, 0, 0, -65534, 0, 0, -65535, 0, 0, -65536, 0, 0, -1, 0, 0, 65535, 0, 0, 131071, 0, 0, -2, 0, 0, 65534, 0, 0, 131070, 0, 0, 196606, 0, 0, 196607, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 65540, 0, 0, 4, 0, 0, -65532, 0, 0, -131068, 0, 0, -131069, 0, 0, -131070, 0, 0, -131071, 0, 0, -131072, 0, 0, -65537, 0, 0, -65538, 0, 0, -65539, 0, 0, -3, 0, 0, 65533, 0, 0, 131069, 0, 0, 196605, 0, 0)
+
+[node name="Field" type="Node2D" parent="."]
+
+[node name="boss" parent="Field" instance=ExtResource("4_ouygk")]
+position = Vector2(291, 434)
+
+[node name="TileMap" type="TileMap" parent="Field"]
+tile_set = ExtResource("2_ojbbo")
+format = 2
+layer_0/tile_data = PackedInt32Array(589820, 131073, 3, 589821, 131073, 3, 589822, 131073, 3, 589823, 131073, 3, 524288, 131073, 3, 524290, 131073, 3, 524289, 131073, 3, 524292, 131073, 3, 524291, 131073, 3, 524293, 131073, 3, 524295, 131073, 3, 524294, 131073, 3, 524296, 131073, 3, 524297, 131073, 3, 524298, 131073, 3, 524299, 131073, 3, 524300, 196609, 2, 393228, 1, 1, 327692, 1, 1, 262156, 1, 1, 196620, 1, 1, 589819, 131073, 3, 589818, 131073, 3, 589817, 65537, 2, 524281, 1, 1, 458745, 1, 1, 393209, 1, 1, 327673, 1, 1, 262137, 1, 1, 196601, 1, 1, 131065, 1, 1, 65529, 1, 1, -7, 65537, 0, -6, 131073, 3, -5, 131073, 3, -4, 131073, 3, -3, 131073, 3, -2, 131073, 3, -1, 131073, 3, -65536, 131073, 3, -65535, 131073, 3, -65534, 131073, 3, -65533, 131073, 3, -65532, 131073, 3, -65526, 131073, 3, -65527, 131073, 3, -65528, 131073, 3, -65529, 131073, 3, -65530, 131073, 3, -65531, 131073, 3, -65524, 196609, 0, -65525, 131073, 3, 458764, 1, 1, 131084, 1, 1, 65548, 1, 1, 12, 1, 1)
+
+[node name="Player" parent="Field" instance=ExtResource("4_0croy")]
+position = Vector2(-149, 439)
+dash_length_blocks = 2.0
+dash_speed_blocks_per_second = 8.0
