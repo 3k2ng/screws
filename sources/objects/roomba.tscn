@@ -1,43 +1,43 @@
 [gd_scene load_steps=15 format=3 uid="uid://dirclufgv8xyr"]
 
-[ext_resource type="Script" path="res://sources/objects/rumba.gd" id="1_64ts5"]
-[ext_resource type="Texture2D" uid="uid://dxumk0cbbst0i" path="res://assets/sprites/roomba/roomba_angry.png" id="2_g0mg5"]
-[ext_resource type="Texture2D" uid="uid://bwlp11lwtokq0" path="res://assets/sprites/roomba/roomba_stun.png" id="3_61ywf"]
-[ext_resource type="Texture2D" uid="uid://bsto23nd758x0" path="res://assets/sprites/roomba/roomba_patrol.png" id="4_a8k8g"]
+[ext_resource type="Script" path="res://sources/objects/roomba.gd" id="1_wqtbi"]
+[ext_resource type="Texture2D" uid="uid://dxumk0cbbst0i" path="res://assets/sprites/roomba/roomba_angry.png" id="2_eyt3s"]
+[ext_resource type="Texture2D" uid="uid://bwlp11lwtokq0" path="res://assets/sprites/roomba/roomba_stun.png" id="3_uk6xr"]
+[ext_resource type="Texture2D" uid="uid://bsto23nd758x0" path="res://assets/sprites/roomba/roomba_patrol.png" id="4_0n466"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ktfgd"]
 size = Vector2(110, 53)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qx0am"]
-atlas = ExtResource("2_g0mg5")
+atlas = ExtResource("2_eyt3s")
 region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eyed7"]
-atlas = ExtResource("2_g0mg5")
+atlas = ExtResource("2_eyt3s")
 region = Rect2(128, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uywiu"]
-atlas = ExtResource("3_61ywf")
+atlas = ExtResource("3_uk6xr")
 region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_orogl"]
-atlas = ExtResource("3_61ywf")
+atlas = ExtResource("3_uk6xr")
 region = Rect2(128, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1byee"]
-atlas = ExtResource("3_61ywf")
+atlas = ExtResource("3_uk6xr")
 region = Rect2(256, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_361bi"]
-atlas = ExtResource("4_a8k8g")
+atlas = ExtResource("4_0n466")
 region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nfck0"]
-atlas = ExtResource("4_a8k8g")
+atlas = ExtResource("4_0n466")
 region = Rect2(128, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_or76u"]
-atlas = ExtResource("4_a8k8g")
+atlas = ExtResource("4_0n466")
 region = Rect2(256, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jwnww"]
@@ -82,9 +82,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="rumba" type="CharacterBody2D"]
+[node name="Roomba" type="CharacterBody2D"]
 collision_layer = 4
-script = ExtResource("1_64ts5")
+script = ExtResource("1_wqtbi")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4

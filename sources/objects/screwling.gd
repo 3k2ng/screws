@@ -55,7 +55,7 @@ func see_player():
 		return
 	
 	transition_timer = 5
-	state = APPROACHING	
+	state = APPROACHING
 	
 	return
 

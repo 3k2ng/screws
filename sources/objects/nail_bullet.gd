@@ -25,17 +25,12 @@ func _process(delta):
 		self.queue_free()
 	
 	position.x += cur_speed * direction * delta + 1
-	
-	
-
-
 
 func _on_area_2d_area_entered(area):
 	pass # Replace with function body.
 	
 func set_direction(dir):
 	direction = dir
-
 
 func _on_area_2d_body_entered(body):
 	if body.has_method("on_shot"):
