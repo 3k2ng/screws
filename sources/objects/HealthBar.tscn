@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://lyfine1waeyu"]
+
+[ext_resource type="Script" path="res://sources/objects/HealthBar.gd" id="1_vidcq"]
+[ext_resource type="Texture2D" uid="uid://be2v24s61bu1t" path="res://assets/sprites/screw.png" id="2_151f6"]
+
+[node name="Life" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vidcq")
+
+[node name="screw" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_151f6")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c2t4ok2kgr7mk"]
+[gd_scene load_steps=6 format=3 uid="uid://b1blbw10bi38x"]
 
 [ext_resource type="Texture2D" uid="uid://cow3y3ggsmqf4" path="res://assets/sprites/giant_gate.png" id="1_c42ub"]
 [ext_resource type="Script" path="res://sources/objects/giant_gate.gd" id="1_fu4db"]

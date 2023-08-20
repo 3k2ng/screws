@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal life_changed(health)
+
 const BLOCK_SIZE: int = 128
 
 @export var extra_jumps: int = 1

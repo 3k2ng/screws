@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://4l1345vcd266"]
+[gd_scene load_steps=12 format=3 uid="uid://4l1345vcd266"]
 
 [ext_resource type="TileSet" uid="uid://bq2ed7oa8kaw1" path="res://assets/tilesets/bg.tres" id="1_a5nrs"]
 [ext_resource type="PackedScene" uid="uid://d1mk60km0anic" path="res://sources/objects/screwling.tscn" id="2_kany6"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dirclufgv8xyr" path="res://sources/objects/roomba.tscn" id="7_1wbty"]
 [ext_resource type="AudioStream" uid="uid://dfyvf0ydqlr6w" path="res://assets/Screws_Loose_Oh_No_How_Could_This_Happen (1).ogg" id="7_r3d6y"]
 [ext_resource type="Texture2D" uid="uid://cow3y3ggsmqf4" path="res://assets/sprites/giant_gate.png" id="8_kqqpd"]
+[ext_resource type="PackedScene" uid="uid://dosl0sgnefk2t" path="res://sources/objects/spike.tscn" id="10_pajbi"]
 
 [sub_resource type="GDScript" id="GDScript_1ue0w"]
 script/source = "extends Node
@@ -82,7 +83,7 @@ position = Vector2(-1328, 3360)
 wire = NodePath("../wire0")
 
 [node name="Player" parent="Field" instance=ExtResource("3_86c4h")]
-position = Vector2(-1312, 256)
+position = Vector2(-144, 288)
 dash_length_blocks = 2.0
 dash_speed_blocks_per_second = 8.0
 
@@ -125,3 +126,6 @@ volume_db = 14.054
 position = Vector2(1216, 2080)
 texture = ExtResource("8_kqqpd")
 vframes = 7
+
+[node name="spike" parent="." instance=ExtResource("10_pajbi")]
+position = Vector2(128, 256)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://3ecgptmh5ssx"]
+[gd_scene load_steps=62 format=3 uid="uid://3ecgptmh5ssx"]
 
 [ext_resource type="Script" path="res://sources/objects/player.gd" id="1_ml32f"]
 [ext_resource type="Shader" path="res://sources/shaders/flash.gdshader" id="1_vrigk"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://b1un0ncgi7tgi" path="res://assets/sprites/mechanic/mechanic_run_gun.png" id="10_rgbi3"]
 [ext_resource type="Texture2D" uid="uid://hjk07jw3tgxp" path="res://assets/sprites/mechanic/mechanic_slide_gun.png" id="12_7q458"]
 [ext_resource type="AudioStream" uid="uid://cp864uuye36xn" path="res://assets/sound fx/nailgunshoot2.mp3" id="16_vs81x"]
+[ext_resource type="PackedScene" uid="uid://lyfine1waeyu" path="res://sources/objects/HealthBar.tscn" id="18_wphqp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i4qrk"]
 shader = ExtResource("1_vrigk")
@@ -435,3 +436,7 @@ attenuation = 0.25
 libraries = {
 "": SubResource("AnimationLibrary_10taa")
 }
+
+[node name="Life" parent="." instance=ExtResource("18_wphqp")]
+
+[connection signal="life_changed" from="." to="Life" method="_on_player_life_changed"]
