@@ -17,5 +17,3 @@ metadata/_edit_lock_ = true
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ktfgd")
 metadata/_edit_lock_ = true
-
-[node name="Vision" type="RayCast2D" parent="."]
