@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://3ecgptmh5ssx"]
+[gd_scene load_steps=62 format=3 uid="uid://3ecgptmh5ssx"]
 
 [ext_resource type="Script" path="res://sources/objects/player.gd" id="1_ml32f"]
 [ext_resource type="Shader" path="res://sources/shaders/flash.gdshader" id="1_vrigk"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://b1un0ncgi7tgi" path="res://assets/sprites/mechanic/mechanic_run_gun.png" id="10_rgbi3"]
 [ext_resource type="Texture2D" uid="uid://hjk07jw3tgxp" path="res://assets/sprites/mechanic/mechanic_slide_gun.png" id="12_7q458"]
 [ext_resource type="AudioStream" uid="uid://cp864uuye36xn" path="res://assets/sound fx/nailgunshoot2.mp3" id="16_vs81x"]
+[ext_resource type="AudioStream" uid="uid://de3h735ca4mj2" path="res://assets/sound fx/dashing.mp3" id="18_5dj2w"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i4qrk"]
 shader = ExtResource("1_vrigk")
@@ -395,7 +396,6 @@ _data = {
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 material = SubResource("ShaderMaterial_i4qrk")
-position = Vector2(192, 256)
 collision_layer = 2
 script = ExtResource("1_ml32f")
 
@@ -430,6 +430,9 @@ volume_db = 16.865
 pitch_scale = 1.32
 max_distance = 1000.0
 attenuation = 0.25
+
+[node name="Dashing" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_5dj2w")
 
 [node name="FlashingPlayer" type="AnimationPlayer" parent="."]
 libraries = {

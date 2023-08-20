@@ -104,7 +104,7 @@ func on_shot():
 func _on_area_2d_body_entered(body):
 	if state == CHARGE:
 		if body == player_node:
-			body.hit(4.5 * velocity.x)
+			body.hit(2.0 * velocity.x)
 		state = STUNNED
 		stun_timer = 5
 	pass # Replace with function body.

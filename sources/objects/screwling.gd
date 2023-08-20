@@ -28,7 +28,7 @@ var screwling_health_counter = 0
 @onready var screw = preload("res://sources/objects/screw.tscn")
 
 
-var health = 5
+var health = 3
 var happy_timer = 0
 var transition_timer = 0
 

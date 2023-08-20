@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://dwkqoim0w3ct6"]
+[gd_scene load_steps=15 format=3 uid="uid://dwkqoim0w3ct6"]
 
 [ext_resource type="TileSet" uid="uid://ctiu66fe7l3rj" path="res://assets/tilesets/metal_tiles.tres" id="1_0u5wo"]
 [ext_resource type="TileSet" uid="uid://bq2ed7oa8kaw1" path="res://assets/tilesets/bg.tres" id="1_aub2e"]
+[ext_resource type="Script" path="res://sources/scenes/level_manager.gd" id="1_nejqs"]
 [ext_resource type="PackedScene" uid="uid://c2t4ok2kgr7mk" path="res://sources/objects/giant_gate.tscn" id="2_jobpq"]
 [ext_resource type="PackedScene" uid="uid://3ecgptmh5ssx" path="res://sources/objects/player_scene.tscn" id="3_6jdki"]
 [ext_resource type="PackedScene" uid="uid://bsb0oiephq2dp" path="res://sources/objects/button.tscn" id="5_00euu"]
@@ -10,8 +11,15 @@
 [ext_resource type="PackedScene" uid="uid://dirclufgv8xyr" path="res://sources/objects/roomba.tscn" id="8_rnl0v"]
 [ext_resource type="Script" path="res://sources/objects/health_bar.gd" id="9_b3uc7"]
 [ext_resource type="PackedScene" uid="uid://nsd8wh4bwnmq" path="res://sources/objects/spike.tscn" id="10_wvfe3"]
+[ext_resource type="PackedScene" uid="uid://bc5503xjg0bks" path="res://sources/objects/boss.tscn" id="11_cmrh4"]
+[ext_resource type="AudioStream" uid="uid://dfyvf0ydqlr6w" path="res://assets/Screws_Loose_Oh_No_How_Could_This_Happen (1).ogg" id="13_jyr5i"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_wqpd6"]
+a = Vector2(192, 64)
+b = Vector2(-192, 64)
 
 [node name="RealLevel" type="Node"]
+script = ExtResource("1_nejqs")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -38,8 +46,8 @@ anchor_right = 0.5
 anchor_bottom = 0.322
 offset_left = -640.0
 offset_top = -360.0
-offset_right = -608.0
-offset_bottom = -328.0
+offset_right = -640.0
+offset_bottom = -360.0
 script = ExtResource("9_b3uc7")
 
 [node name="Walls" type="TileMap" parent="Field"]
@@ -137,3 +145,18 @@ position = Vector2(3360, -1056)
 
 [node name="spike5" parent="Field" instance=ExtResource("10_wvfe3")]
 position = Vector2(3360, -1056)
+
+[node name="boss" parent="Field" instance=ExtResource("11_cmrh4")]
+position = Vector2(0, 960)
+
+[node name="BossTrigger" type="Area2D" parent="Field"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="Shape" type="CollisionShape2D" parent="Field/BossTrigger"]
+shape = SubResource("SegmentShape2D_wqpd6")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_jyr5i")
+
+[connection signal="body_entered" from="Field/BossTrigger" to="." method="start_boss"]

@@ -85,7 +85,6 @@ func enable():
 		state = PATROL
 
 func _process(delta):
-	enable()
 	if state == IDLE:
 		return
 	
@@ -238,7 +237,6 @@ func on_shot():
 			
 	if $Screw2.position.x <= 40 && $Screw.position.x >= -40:
 		state = HAPPY
-		print("HAPPY")
 	pass
 
 func shoot_toast():
@@ -258,7 +256,7 @@ func _on_area_2d_body_entered(body):
 	else:
 		if body == player_node:
 			if player_node.position.x > self.position.x:
-				body.hit(300 + velocity.x)		
+				body.hit(300 + velocity.x)
 			else:
-				body.hit(-300 + velocity.x)		
+				body.hit(-300 + velocity.x)
 	pass # Replace with function body.

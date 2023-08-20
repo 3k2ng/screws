@@ -197,7 +197,7 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="boss" type="CharacterBody2D"]
+[node name="boss" type="CharacterBody2D" groups=["boss"]]
 collision_layer = 4
 script = ExtResource("1_sswnv")
 

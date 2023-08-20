@@ -82,9 +82,6 @@ func dash(delta):
 	return
 	
 func movement(delta):
-	
-	
-
 	direction = Input.get_axis("move_left", "move_right")
 	if wall_bounce_timer > 0:
 		if direction * velocity.x > 0:
