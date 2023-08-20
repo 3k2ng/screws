@@ -490,7 +490,7 @@ sources/0 = SubResource("TileSetAtlasSource_5863n")
 [node name="Field" type="Node2D" parent="."]
 
 [node name="rumba" parent="Field" instance=ExtResource("1_ym6od")]
-position = Vector2(1504, 370)
+position = Vector2(1161, 392)
 
 [node name="TileMap" type="TileMap" parent="Field"]
 scale = Vector2(8, 8)
@@ -504,4 +504,4 @@ dash_length_blocks = 2.0
 dash_speed_blocks_per_second = 8.0
 
 [node name="Screwling" parent="Field" instance=ExtResource("2_kany6")]
-position = Vector2(789, 336)
+position = Vector2(1667, 354)
