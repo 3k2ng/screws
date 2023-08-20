@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://1uuyi8vf2u1c"]
+[gd_scene load_steps=2 format=3 uid="uid://cpojhshkkweux"]
 
-[ext_resource type="Script" path="res://sources/objects/Pause.gd" id="1_02eud"]
+[ext_resource type="Script" path="res://sources/objects/pause.gd" id="1_krx4i"]
 
 [node name="PauseScreen" type="Control"]
 layout_mode = 3
@@ -9,7 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_02eud")
+script = ExtResource("1_krx4i")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
