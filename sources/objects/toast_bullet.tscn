@@ -20,4 +20,3 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_ar8o8")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]

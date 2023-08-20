@@ -1,9 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ducrkcy1erqxf"]
+[gd_scene load_steps=5 format=3 uid="uid://bdkluymqw33f"]
 
 [ext_resource type="TileSet" uid="uid://bq2ed7oa8kaw1" path="res://assets/tilesets/bg.tres" id="1_nii1b"]
 [ext_resource type="TileSet" uid="uid://ctiu66fe7l3rj" path="res://assets/tilesets/metal_tiles.tres" id="2_ojbbo"]
 [ext_resource type="PackedScene" uid="uid://3ecgptmh5ssx" path="res://sources/objects/player_scene.tscn" id="4_0croy"]
-[ext_resource type="PackedScene" path="res://sources/objects/boss.tscn" id="4_ouygk"]
+[ext_resource type="PackedScene" uid="uid://bc5503xjg0bks" path="res://sources/objects/boss.tscn" id="4_ouygk"]
 
 [node name="Demo" type="Node"]
 
