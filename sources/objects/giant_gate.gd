@@ -10,3 +10,4 @@ func _process(delta):
 			return
 	opened = true
 	$AnimationPlayer.play("open")
+	$CollisionShape2D.disabled = true

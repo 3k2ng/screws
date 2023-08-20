@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://0nl8a0i4m3vr"]
+
+[ext_resource type="TileSet" uid="uid://ctiu66fe7l3rj" path="res://assets/tilesets/metal_tiles.tres" id="1_oeu74"]
+[ext_resource type="PackedScene" uid="uid://c2t4ok2kgr7mk" path="res://sources/objects/giant_gate.tscn" id="2_7oxbf"]
+[ext_resource type="PackedScene" uid="uid://3ecgptmh5ssx" path="res://sources/objects/player_scene.tscn" id="3_wtu81"]
+[ext_resource type="PackedScene" uid="uid://bsb0oiephq2dp" path="res://sources/objects/button.tscn" id="4_130sw"]
+[ext_resource type="PackedScene" uid="uid://d1mk60km0anic" path="res://sources/objects/screwling.tscn" id="5_sec4t"]
+
+[node name="TestGate" type="Node"]
+
+[node name="GiantGate" parent="." instance=ExtResource("2_7oxbf")]
+position = Vector2(256, 32)
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("1_oeu74")
+format = 2
+layer_0/tile_data = PackedInt32Array(65536, 0, 1, 131072, 0, 1, 196608, 0, 1, 262144, 0, 1, 327680, 65536, 2, 327681, 131072, 3, 327682, 131072, 3, 327683, 131072, 3, 327684, 131072, 3, 327685, 131072, 3, 327686, 131072, 3, 327687, 196608, 2, 262151, 0, 1, 196615, 0, 1, 131079, 0, 1, 65543, 0, 1, 8, 131072, 3, 9, 131072, 3, 10, 131072, 3, 11, 131072, 3, 12, 131072, 3, 7, 65536, 0, 0, 196608, 0, 65535, 131072, 3, 65534, 131072, 3, 65533, 131072, 3, 65532, 131072, 3, 65531, 131072, 3, 65530, 131072, 3, 13, 131072, 3, 14, 131072, 3, 15, 131072, 3, 16, 131072, 3, 17, 131072, 3, 18, 131072, 3, 19, 131072, 3, 20, 131072, 3, 21, 196608, 3, 65529, 131072, 3, 65528, 131072, 3, 65527, 131072, 3, 65526, 131072, 3, 65525, 131072, 3, 65524, 131072, 3, 65523, 131072, 3, 65522, 65536, 3)
+
+[node name="Player" parent="." instance=ExtResource("3_wtu81")]
+position = Vector2(256, -128)
+
+[node name="button" parent="." instance=ExtResource("4_130sw")]
+position = Vector2(800, -32)
+
+[node name="Screwling" parent="." node_paths=PackedStringArray("button_pair") instance=ExtResource("5_sec4t")]
+position = Vector2(512, -64)
+button_pair = NodePath("../button")
