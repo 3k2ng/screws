@@ -17,6 +17,8 @@ const BLOCK_SIZE: int = 128
 @onready var is_moving_right = true
 var stun_timer = 0
 
+var charge_dir = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	state = PATROL
@@ -29,7 +31,7 @@ func see_player():
 		return
 		
 	var space_state = get_world_2d().direct_space_state
-	var query = PhysicsRayQueryParameters2D.create(global_position, player_node.global_position)
+	var query = PhysicsRayQueryParameters2D.create(global_position, player_node.global_position + Vector2(0,64))
 	query.exclude = [self, player_node]
 	var result = space_state.intersect_ray(query)
 	
@@ -43,33 +45,47 @@ func see_player():
 		state = PATROL
 		return
 		
+	if player_node.position.y < self.position.y - 32 || player_node.position.y > self.position.y + 32:
+		state = PATROL	
+		return
+		
+	$Sprite.play("angy")
+	charge_dir = relative_position_x / abs(relative_position_x)
 	state = CHARGE	
+	print("stat")
 	
 	return
 
 func _process(delta):
+	if state == PATROL: 
+		see_player()
 	pass
 
 func _physics_process(delta):
 	
 	var relative_position_x : float = (player_node.global_position.x - global_position.x)
 	if state == PATROL:
-		see_player()
-		if position.x >= end_point || is_on_wall():
+
+		$Sprite.play("patrol")
+		if position.x >= end_point || (is_on_wall() && is_moving_right):
 			is_moving_right = false
-		elif position.x <= start_point || is_on_wall():
+		elif position.x <= start_point || (is_on_wall() && !is_moving_right):
 			is_moving_right = true
 		if is_moving_right:
+			$Sprite.flip_h = true
 			velocity.x = movement_speed
 		else:
+			$Sprite.flip_h = false
 			velocity.x = -movement_speed
 	elif state == CHARGE:
-		if(relative_position_x >= -300 and relative_position_x < 0):
-			velocity.x = -movement_speed*2.5
-		elif(relative_position_x >= 0 and relative_position_x < 300):
-			velocity.x = movement_speed*2.5
+		velocity.x =  charge_dir * movement_speed*2.5
+		
+		if is_on_wall():
+			state = STUNNED
+			stun_timer = 5
 		pass
 	elif state == STUNNED:
+		$Sprite.play("crash")
 		stun_timer -= delta
 		if stun_timer <= 0:
 			state = PATROL
