@@ -3,7 +3,7 @@
 [ext_resource type="TileSet" uid="uid://ctiu66fe7l3rj" path="res://assets/tilesets/metal_tiles.tres" id="1_0u5wo"]
 [ext_resource type="TileSet" uid="uid://bq2ed7oa8kaw1" path="res://assets/tilesets/bg.tres" id="1_aub2e"]
 [ext_resource type="Script" path="res://sources/scenes/level_manager.gd" id="1_nejqs"]
-[ext_resource type="PackedScene" uid="uid://c2t4ok2kgr7mk" path="res://sources/objects/giant_gate.tscn" id="2_jobpq"]
+[ext_resource type="PackedScene" uid="uid://b1blbw10bi38x" path="res://sources/objects/giant_gate.tscn" id="2_jobpq"]
 [ext_resource type="PackedScene" uid="uid://3ecgptmh5ssx" path="res://sources/objects/player_scene.tscn" id="3_6jdki"]
 [ext_resource type="PackedScene" uid="uid://bsb0oiephq2dp" path="res://sources/objects/button.tscn" id="5_00euu"]
 [ext_resource type="TileSet" uid="uid://bkqsoh5r7r38o" path="res://assets/tilesets/wire.tres" id="6_8e2gs"]
