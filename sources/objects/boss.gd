@@ -26,6 +26,8 @@ var toast_shoot_delay = 0
 
 var attack_timer = 0
 
+@onready var toast_bullet = preload("res://sources/objects/toast_bullet.tscn")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	state = PATROL
@@ -127,7 +129,7 @@ func _physics_process(delta):
 			else:
 				toast_shoot_delay = toast_shoot_delay_max
 				
-				
+				shoot_toast()
 			toast_shoot_dur -= delta
 		else:
 			state = PATROL
@@ -139,6 +141,11 @@ func _physics_process(delta):
 	
 func on_shot():
 	pass
+
+func shoot_toast():
+	var ntoast = toast_bullet.instantiate()
+	ntoast.position = self.position
+	self.get_parent().add_child(ntoast)
 
 func _on_area_2d_body_entered(body):
 	if state == CHARGE:

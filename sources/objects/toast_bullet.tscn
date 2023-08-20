@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://jqho8f3g7gme"]
+
+[ext_resource type="Texture2D" uid="uid://mul1c0tacln6" path="res://assets/sprites/toaster/bread_mid.png" id="1_17k23"]
+[ext_resource type="Script" path="res://sources/objects/toast_bullet.gd" id="1_oqmhn"]
+
+[node name="toast_bullet" type="Node2D"]
+script = ExtResource("1_oqmhn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_17k23")

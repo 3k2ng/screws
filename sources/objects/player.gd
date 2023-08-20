@@ -217,7 +217,7 @@ func _physics_process(delta: float) -> void:
 func dash_anim():
 	if dash_timer > 0:
 		$Sprite.play("dash")
-		dash_noise.play()
+		#dash_noise.play()
 	#elif $Sprite.animation == "dash":
 	#	$Sprite.play("dash_end")
 	pass
@@ -252,7 +252,7 @@ func movement_anim():
 
 func hit(knockback):
 	if invin_timer <= 0:
-		invin_timer = 0.2
+		invin_timer = 1
 		$Sprite.play("hurt")
 		state = HIT
 		velocity.x = knockback
