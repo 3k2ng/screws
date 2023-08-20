@@ -161,9 +161,12 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("shoot"):
 		var nailbul = nail_bullet.instantiate()
 		nailbul.position = self.position
+		nailbul.position.y += 20
 		if $Sprite.flip_h == true:
+			nailbul.position.x += 20
 			nailbul.set_direction(1)
 		else:
+			nailbul.position.x -= 20
 			nailbul.set_direction(-1)
 		self.get_parent().add_child(nailbul)
 	
