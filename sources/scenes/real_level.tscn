@@ -15,8 +15,8 @@
 [ext_resource type="AudioStream" uid="uid://dfyvf0ydqlr6w" path="res://assets/Screws_Loose_Oh_No_How_Could_This_Happen (1).ogg" id="13_jyr5i"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_wqpd6"]
-a = Vector2(192, 64)
-b = Vector2(-192, 64)
+a = Vector2(896, 448)
+b = Vector2(-896, 448)
 
 [node name="RealLevel" type="Node"]
 script = ExtResource("1_nejqs")
