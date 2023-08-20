@@ -222,4 +222,5 @@ func movement_anim():
 func hit(knockback):
 	state = HIT
 	velocity.x = knockback
+	
 	velocity.y = abs(knockback) * -2

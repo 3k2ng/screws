@@ -12,9 +12,9 @@ script = ExtResource("1_atwgo")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(456.5, 141.5)
+position = Vector2(5, 1)
 shape = SubResource("RectangleShape2D_uuhsb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(457, 141)
+position = Vector2(2, 0)
 texture = ExtResource("2_offy2")

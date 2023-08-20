@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://2am4n5y2dgg2"]
+[gd_scene load_steps=4 format=3 uid="uid://2am4n5y2dgg2"]
 
 [ext_resource type="Script" path="res://sources/objects/title_screen.gd" id="1_w61co"]
+[ext_resource type="Texture2D" uid="uid://d1yc77ifjqfxw" path="res://sources/objects/Cool Text - SCREWS 441416979822876.png" id="2_vq8wm"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_qi2up"]
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -12,20 +15,31 @@ grow_vertical = 2
 script = ExtResource("1_w61co")
 
 [node name="Panel" type="Panel" parent="."]
+modulate = Color(0.729412, 0.905882, 1, 0.803922)
 layout_mode = 0
 offset_left = 1.0
 offset_top = -1.0
-offset_right = 1136.0
-offset_bottom = 571.0
+offset_right = 1280.0
+offset_bottom = 736.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 0
-offset_top = 3.0
-offset_right = 41.0
-offset_bottom = 40.0
+offset_left = 356.0
+offset_top = 302.0
+offset_right = 870.0
+offset_bottom = 460.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_vq8wm")
 
 [node name="Play" type="Button" parent="Panel/VBoxContainer"]
+modulate = Color(1, 0.458824, 0.364706, 1)
 layout_mode = 2
-text = "Play"
+text = "PLAY
+"
+icon = SubResource("ImageTexture_qi2up")
+icon_alignment = 1
 
 [connection signal="pressed" from="Panel/VBoxContainer/Play" to="." method="_on_play_pressed"]
