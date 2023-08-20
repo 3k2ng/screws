@@ -137,10 +137,13 @@ func _physics_process(delta: float) -> void:
 		else:
 			$Sprite.play("walk")
 	else:
-		if velocity.y > 0:
-			$Sprite.play("jump")
-		else:
+		if velocity.y >= 0:
 			$Sprite.play("fall")
+		else:
+			$Sprite.play("jump")
+	
+	if is_on_wall_only():
+		pass
 	
 	move_and_slide()
 	

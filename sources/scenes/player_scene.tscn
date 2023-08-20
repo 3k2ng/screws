@@ -149,7 +149,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cq4oj"]
-size = Vector2(112, 128)
+size = Vector2(32, 80)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 position = Vector2(192, 256)
@@ -158,7 +158,7 @@ script = ExtResource("1_ml32f")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_h4shj")
-animation = &"fall"
+animation = &"idle"
 speed_scale = 2.0
 metadata/_edit_lock_ = true
 
@@ -169,7 +169,7 @@ libraries = {
 }
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 0)
+position = Vector2(0, 24)
 shape = SubResource("RectangleShape2D_cq4oj")
 metadata/_edit_lock_ = true
 
