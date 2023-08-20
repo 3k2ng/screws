@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://l5xl8g1o3hui"]
+
+[ext_resource type="Script" path="res://sources/objects/toaster.gd" id="1_atwgo"]
+[ext_resource type="Texture2D" uid="uid://odxtkxa8eybn" path="res://icon.svg" id="2_offy2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uuhsb"]
+size = Vector2(129, 129)
+
+[node name="toaster" type="Node2D"]
+script = ExtResource("1_atwgo")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(456.5, 141.5)
+shape = SubResource("RectangleShape2D_uuhsb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(457, 141)
+texture = ExtResource("2_offy2")
