@@ -91,13 +91,13 @@ func _physics_process(delta):
 			$AnimatedSprite2D.flip_h = true
 			velocity.x = movement_speed
 	elif state == HAPPY:
-		print("success")
 		pass
 	if not is_on_floor():
 		velocity.y += 512 * delta
 	move_and_slide()
 
 func on_shot():
+	hurt_noise.play()
 	screwling_health_counter = screwling_health_counter+1
 	
 func _on_area_2d_body_entered(body):
