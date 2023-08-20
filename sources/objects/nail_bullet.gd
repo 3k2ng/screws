@@ -4,6 +4,7 @@ var direction = 0
 @onready var player_node = get_tree().get_first_node_in_group("player")
 var speed = 2000
 var cur_speed = speed
+var lifetime = 3
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,6 +13,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
+	if lifetime <= 0:
+		self.queue_free()
+	lifetime -= delta
 	
 	$RayCast2D.target_position.x = (cur_speed + 16) * direction * delta
 	

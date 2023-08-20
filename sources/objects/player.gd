@@ -65,6 +65,8 @@ enum{DASH,FREE,HIT}
 var direction = 0
 var state = FREE
 
+var invin_timer = 0
+
 func _ready() -> void:
 	pass
 	
@@ -78,6 +80,8 @@ func dash(delta):
 	
 func movement(delta):
 	
+	
+
 	direction = Input.get_axis("move_left", "move_right")
 	if wall_bounce_timer > 0:
 		if direction * velocity.x > 0:
@@ -148,10 +152,8 @@ func movement(delta):
 func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("shoot"):
-		shoot_noise.play()
 		is_shooting = true
 	if Input.is_action_just_released("shoot"):
-		shoot_noise.play()
 		is_shooting = false
 	
 	if state == DASH:
@@ -175,6 +177,7 @@ func _physics_process(delta: float) -> void:
 		var nailbul = nail_bullet.instantiate()
 		nailbul.position = self.position
 		nailbul.position.y += 20
+		shoot_noise.play()
 		if $Sprite.flip_h == true:
 			nailbul.position.x += 20
 			nailbul.set_direction(1)
@@ -186,6 +189,9 @@ func _physics_process(delta: float) -> void:
 		
 	
 	# Update timers
+	if invin_timer > 0:
+		invin_timer -= delta
+	
 	if shoot_timer > 0:
 		shoot_timer -= delta
 	
@@ -243,8 +249,10 @@ func movement_anim():
 			$Sprite.play("jump" + bleh)
 
 func hit(knockback):
-	$Sprite.play("hurt")
-	state = HIT
-	velocity.x = knockback
-	
-	velocity.y = abs(knockback) * -2
+	if invin_timer <= 0:
+		invin_timer = 0.2
+		$Sprite.play("hurt")
+		state = HIT
+		velocity.x = knockback
+		
+		velocity.y = abs(knockback) * -2
