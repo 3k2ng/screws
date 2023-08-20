@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var state
-enum{CHARGE, PATROL, STUNNED, SHOOT_TOAST}
+enum{CHARGE, PATROL, STUNNED, SHOOT_TOAST, HAPPY, JUMP}
 const BLOCK_SIZE: int = 128
 
 @export var movement_speed_blocks: float = 1.5
@@ -100,6 +100,11 @@ func _process(delta):
 func _physics_process(delta):
 	
 	var relative_position_x : float = (player_node.global_position.x - global_position.x)
+	if state == HAPPY:
+		$Sprite.play("happy")
+		velocity.x = 0
+		return
+	
 	if state == PATROL:
 
 		$Sprite.play("patrol")
@@ -150,6 +155,14 @@ func _physics_process(delta):
 	move_and_slide()
 	
 func on_shot():
+	if player_node.position.x > self.position.x:
+		$Screw2.position.x -= 2
+	else:
+		$Screw.position.x += 2
+			
+	if $Screw2.position.x <= 40 && $Screw.position.x >= -40:
+		state = HAPPY
+		print("HAPPY")
 	pass
 
 func shoot_toast():

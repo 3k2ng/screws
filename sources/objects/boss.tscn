@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bc5503xjg0bks"]
+[gd_scene load_steps=22 format=3 uid="uid://bc5503xjg0bks"]
 
 [ext_resource type="Texture2D" uid="uid://d3fftuoelaju8" path="res://assets/sprites/toaster/toaster.png" id="1_j8omb"]
 [ext_resource type="Script" path="res://sources/objects/boss.gd" id="1_sswnv"]
@@ -30,6 +30,22 @@ region = Rect2(1536, 0, 128, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_phht1"]
 atlas = ExtResource("1_j8omb")
 region = Rect2(1664, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rvlmj"]
+atlas = ExtResource("1_j8omb")
+region = Rect2(1792, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jswgo"]
+atlas = ExtResource("1_j8omb")
+region = Rect2(1920, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5wbr"]
+atlas = ExtResource("1_j8omb")
+region = Rect2(2048, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7trx"]
+atlas = ExtResource("1_j8omb")
+region = Rect2(2176, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_glkus"]
 atlas = ExtResource("1_j8omb")
@@ -87,6 +103,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_rvlmj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jswgo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h5wbr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c7trx")
+}],
+"loop": true,
+"name": &"happy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_glkus")
 }, {
 "duration": 1.0,
@@ -134,7 +167,7 @@ texture = ExtResource("3_6pdt7")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2hu65")
-animation = &"toast_shoot"
+animation = &"happy"
 speed_scale = 2.0
 
 [node name="Area2D" type="Area2D" parent="."]

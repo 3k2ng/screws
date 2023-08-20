@@ -8,7 +8,7 @@ var bsp
 var toastx
 
 var block_range = 8 * 64
-var lanes = 8
+var lanes = 5
 # Called when the node enters the scene tree for the first time.
 
 func _ready():
