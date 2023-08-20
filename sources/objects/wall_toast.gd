@@ -1,9 +1,10 @@
 extends Node2D
 
 var dir = Vector2(0,0)
+var speed = 300
 
 func _process(delta):
-	self.position += dir * delta * 300
+	self.position += dir * delta * speed
 	pass
 
 

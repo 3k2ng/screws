@@ -235,24 +235,27 @@ func _physics_process(delta):
 	move_and_slide()
 
 func toast_circle(normal):
-	var angle_from = 180 * normal
-	
-	var angle_to = 90 * normal
-	
-	var cur_angle = angle_from
-	
-	var num_toasts = 7
-	
-	for i in range(0, num_toasts):
+	var num_circle = 3
+	for i in range(0, num_circle):
+		var angle_from = 180 * normal
 		
-		var ntoast = wall_toast.instantiate()
-		ntoast.position = self.position
+		var angle_to = 90 * normal
 		
-		var direction = Vector2(-normal * cos(deg_to_rad(cur_angle)), sin(deg_to_rad(cur_angle)))
-		ntoast.dir = direction
-		cur_angle += normal * (angle_to / num_toasts)
+		var cur_angle = angle_from
 		
-		self.get_parent().add_child(ntoast)
+		var num_toasts = 5
+		
+		for j in range(0, num_toasts):
+			
+			var ntoast = wall_toast.instantiate()
+			ntoast.position = self.position
+			
+			var direction = Vector2(-normal * cos(deg_to_rad(cur_angle)), sin(deg_to_rad(cur_angle)))
+			ntoast.dir = direction
+			ntoast.speed = 300 - (75 * i)
+			cur_angle += normal * (angle_to / num_toasts)
+			
+			self.get_parent().add_child(ntoast)
 	
 	
 	
