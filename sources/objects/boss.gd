@@ -167,7 +167,7 @@ func _physics_process(delta):
 				
 				if squish_timer <= 0:
 					print("D")
-					attack_timer = 3
+					attack_timer = 2
 					state = PATROL
 				else:
 					squish_timer -= delta
@@ -192,14 +192,14 @@ func _physics_process(delta):
 		velocity.x =  charge_dir * movement_speed*2.5
 		if is_on_wall():
 			state = STUNNED
-			stun_timer = 2
+			stun_timer = 1
 		pass
 	elif state == STUNNED:
 		$Sprite.play("crash")
 		stun_timer -= delta
 		if stun_timer <= 0:
 			state = PATROL
-			attack_timer = 2
+			attack_timer = 1
 		velocity.x = 0
 	
 	elif state == SHOOT_TOAST:
