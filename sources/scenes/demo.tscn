@@ -502,9 +502,11 @@ metadata/_edit_lock_ = true
 
 [node name="Screwling" parent="Field" instance=ExtResource("2_kany6")]
 position = Vector2(630, 259)
+collision_layer = 4
 
 [node name="Player" type="CharacterBody2D" parent="Field" groups=["player"]]
 position = Vector2(192, 256)
+collision_layer = 2
 script = ExtResource("2_v21kg")
 
 [node name="Sprite" type="Sprite2D" parent="Field/Player"]
