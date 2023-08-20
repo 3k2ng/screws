@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://buyi1bmqckihi"]
+
+[ext_resource type="Script" path="res://sources/objects/floor_toast_spawner.gd" id="1_7qmx4"]
+
+[node name="floor_toast_spawner" type="Node2D"]
+script = ExtResource("1_7qmx4")

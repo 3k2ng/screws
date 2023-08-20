@@ -14,6 +14,8 @@ const BLOCK_SIZE: int = 128
 @onready var end_point: float = global_position.x + moving_distance
 @onready var player_node = get_tree().get_first_node_in_group("player")
 
+@onready var floor_toast_spawner = preload("res://sources/objects/floor_toast_spawner.tscn")
+
 @onready var is_moving_right = true
 var stun_timer = 0
 
@@ -31,6 +33,8 @@ var num_lane = 3
 var toast_x
 
 var start_pos
+
+var range = 9 * 64
 
 var squish_timer = 0
 
@@ -88,8 +92,6 @@ func _process(delta):
 		else:
 			ran = randi_range(1,2)
 		
-		ran = 1
-		
 		if ran == 3:
 			var relative_position_x : float = (player_node.global_position.x - global_position.x)
 			charge_dir = relative_position_x / abs(relative_position_x)
@@ -107,6 +109,28 @@ func _process(delta):
 	pass
 
 func floor_toast():
+	
+	var leftspawner = floor_toast_spawner.instantiate()
+	var rightspawner = floor_toast_spawner.instantiate()
+	leftspawner.position.x = self.position.x
+	rightspawner.position.x = self.position.x
+	
+	leftspawner.position.y = start_pos.y + 45
+	rightspawner.position.y = start_pos.y + 45
+	
+	leftspawner.leftx = start_pos.x - range
+	leftspawner.rightx = start_pos.x + range
+	
+	rightspawner.leftx = start_pos.x - range
+	rightspawner.rightx = start_pos.x + range
+	
+	leftspawner.gap = leftspawner.gap * -1
+	
+	self.get_parent().add_child(leftspawner)
+	self.get_parent().add_child(rightspawner)
+	
+	
+	
 	pass
 
 func _physics_process(delta):
@@ -120,13 +144,13 @@ func _physics_process(delta):
 	if state == JUMP:
 
 		if $Sprite.animation == "jump" && $Sprite.frame == 2:
-			self.velocity.y = -400
+			self.velocity.y = -500
 			$Sprite.play("jumping")
 		elif $Sprite.animation != "jump":
 			
 			if not is_on_floor():
 				if velocity.y > 0:
-					velocity.y += 10
+					velocity.y += 20
 					$Sprite.play("jumping")
 				else: 
 					$Sprite.play("jumping")
@@ -135,7 +159,7 @@ func _physics_process(delta):
 				print($Sprite.animation)
 				
 				if $Sprite.animation != "falling":
-					squish_timer = 0.5
+					squish_timer = 1
 					$Sprite.play("falling")
 					floor_toast()
 				
@@ -195,7 +219,7 @@ func _physics_process(delta):
 			attack_timer = 3
 		
 	if not is_on_floor():
-		velocity.y += 512 * delta
+		velocity.y += 512 * 1.5 * delta
 	move_and_slide()
 	
 func on_shot():
