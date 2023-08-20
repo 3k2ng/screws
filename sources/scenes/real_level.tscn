@@ -160,4 +160,5 @@ shape = SubResource("SegmentShape2D_wqpd6")
 stream = ExtResource("13_jyr5i")
 autoplay = true
 
+[connection signal="win" from="Field/boss" to="." method="boss_killed"]
 [connection signal="body_entered" from="Field/BossTrigger" to="." method="start_boss"]
