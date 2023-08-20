@@ -1,0 +1,12 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://bobsvmfwerk2a"]
+
+[ext_resource type="Texture2D" uid="uid://bm62kr0xa3mha" path="res://assets/sprites/bg/pipe_bg.png" id="1_jbshb"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j3go0"]
+texture = ExtResource("1_jbshb")
+texture_region_size = Vector2i(256, 256)
+0:0/0 = 0
+
+[resource]
+tile_size = Vector2i(256, 256)
+sources/0 = SubResource("TileSetAtlasSource_j3go0")
