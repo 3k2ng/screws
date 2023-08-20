@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://53ngi8lc7h2f"]
 
-[ext_resource type="Script" path="res://sources/objects/title_screen.gd" id="1_awgaa"]
+[ext_resource type="Script" path="res://sources/objects/WinScreen.gd" id="1_y7le5"]
 [ext_resource type="TileSet" uid="uid://bq2ed7oa8kaw1" path="res://assets/tilesets/bg.tres" id="2_4ljma"]
 [ext_resource type="Texture2D" uid="uid://d1yc77ifjqfxw" path="res://assets/sprites/Cool Text - SCREWS 441416979822876.png" id="3_ua8ih"]
 [ext_resource type="AudioStream" uid="uid://cpxtsf38r8pya" path="res://assets/Screws_Loose_Oh_No_You_Are_On_The_Menu.ogg" id="4_ppdum"]
@@ -15,14 +15,14 @@ cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
 [sub_resource type="ImageTexture" id="ImageTexture_qi2up"]
 
-[node name="TitleScreen2" type="Control"]
+[node name="WinScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_awgaa")
+script = ExtResource("1_y7le5")
 
 [node name="Background" type="TileMap" parent="."]
 modulate = Color(0.498039, 0.498039, 0.498039, 1)

@@ -6,6 +6,9 @@
 [ext_resource type="AudioStream" uid="uid://cpxtsf38r8pya" path="res://assets/Screws_Loose_Oh_No_You_Are_On_The_Menu.ogg" id="4_xn34t"]
 
 [sub_resource type="FontFile" id="FontFile_v807e"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
