@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://3ecgptmh5ssx" path="res://sources/objects/player_scene.tscn" id="3_86c4h"]
 [ext_resource type="TileSet" uid="uid://ctiu66fe7l3rj" path="res://assets/tilesets/metal_tiles.tres" id="4_aqeo7"]
 [ext_resource type="PackedScene" uid="uid://bsb0oiephq2dp" path="res://sources/objects/button.tscn" id="5_fp4o7"]
-[ext_resource type="TileSet" uid="uid://d340r7gvljxjs" path="res://assets/tilesets/wire.tres" id="6_kn8mx"]
+[ext_resource type="TileSet" uid="uid://bibna7e7bjp75" path="res://assets/tilesets/wire.tres" id="6_kn8mx"]
 
 [node name="Demo" type="Node"]
 
@@ -19,24 +19,32 @@ layer_0/tile_data = PackedInt32Array(0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 65539, 
 
 [node name="Field" type="Node2D" parent="."]
 
-[node name="Player" parent="Field" instance=ExtResource("3_86c4h")]
-position = Vector2(-149, 439)
-dash_length_blocks = 2.0
-dash_speed_blocks_per_second = 8.0
-
-[node name="button" parent="Field" instance=ExtResource("5_fp4o7")]
-position = Vector2(934, 478)
-
-[node name="Screwling" parent="Field" node_paths=PackedStringArray("button_pair") instance=ExtResource("2_kany6")]
-position = Vector2(433, 477)
-button_pair = NodePath("../button")
-
 [node name="TileMap" type="TileMap" parent="Field"]
 tile_set = ExtResource("4_aqeo7")
 format = 2
 layer_0/tile_data = PackedInt32Array(589820, 0, 3, 589821, 65537, 3, 589822, 196609, 3, 589823, 0, 3, 524288, 65537, 3, 524290, 0, 3, 524289, 196609, 3, 524292, 196609, 3, 524291, 65537, 3, 524293, 0, 3, 524295, 196609, 3, 524294, 65537, 3, 524296, 0, 3, 524297, 65537, 3, 524298, 196609, 3, 524299, 0, 3, 524300, 65537, 3, 524301, 196609, 3, 524302, 0, 3, 524303, 65537, 3, 524304, 196609, 2, 458768, 1, 1, 393232, 1, 1, 327696, 1, 1, 262160, 1, 1, 196624, 196609, 0, 393228, 1, 2, 327692, 1, 1, 262156, 1, 1, 196620, 131073, 0, 196621, 131073, 3, 196622, 131073, 3, 196623, 131073, 3, 196619, 131073, 3, 196618, 65537, 3)
 
-[node name="Wire" type="TileMap" parent="Field"]
+[node name="wire1" type="TileMap" parent="Field"]
+modulate = Color(0.297706, 0.297707, 0.297706, 1)
 tile_set = ExtResource("6_kn8mx")
 format = 2
-layer_0/tile_data = PackedInt32Array(589820, 65536, 3, 589821, 131072, 3, 589822, 131072, 3, 589823, 131072, 3, 524288, 131072, 3, 524289, 131072, 3, 524290, 131072, 3, 524291, 131072, 3, 524292, 131072, 3, 524293, 131072, 3, 524294, 131072, 3, 524295, 131072, 3, 524296, 131072, 3, 524297, 131072, 3, 524298, 131072, 3, 524299, 131072, 3, 524300, 131072, 3, 524301, 131072, 3)
+layer_0/tile_data = PackedInt32Array(589821, 524288, 3, 589822, 131072, 3, 589823, 131072, 3, 524288, 131072, 3, 524289, 131072, 3, 524290, 131072, 3, 524291, 131072, 3, 524292, 131072, 3, 524293, 131072, 3, 524294, 131072, 3, 524295, 131072, 3, 524296, 131072, 3, 524297, 131072, 3, 524298, 131072, 3, 524299, 131072, 3, 524300, 131072, 3, 524301, 131072, 3, 524302, 196608, 2, 524283, 524288, 0, 524284, 131072, 3, 524285, 196608, 0)
+
+[node name="Gate" type="TileMap" parent="Field"]
+modulate = Color(0.219608, 0.219608, 0.219608, 1)
+tile_set = ExtResource("4_aqeo7")
+format = 2
+layer_0/tile_data = PackedInt32Array(589819, 196609, 3, 589818, 131073, 3, 589817, 131073, 3, 589816, 65537, 3)
+
+[node name="Player" parent="Field" instance=ExtResource("3_86c4h")]
+position = Vector2(-149, 439)
+dash_length_blocks = 2.0
+dash_speed_blocks_per_second = 8.0
+
+[node name="button1" parent="Field" node_paths=PackedStringArray("wire") instance=ExtResource("5_fp4o7")]
+position = Vector2(934, 478)
+wire = NodePath("../wire1")
+
+[node name="Screwling" parent="Field" node_paths=PackedStringArray("button_pair") instance=ExtResource("2_kany6")]
+position = Vector2(433, 477)
+button_pair = NodePath("../button1")
