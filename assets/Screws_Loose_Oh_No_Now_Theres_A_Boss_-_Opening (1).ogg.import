@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dfcjb1m4s2026"
+path="res://.godot/imported/Screws_Loose_Oh_No_Now_Theres_A_Boss_-_Opening (1).ogg-ccb363c0fe8726148d37bc9979a01a99.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/Screws_Loose_Oh_No_Now_Theres_A_Boss_-_Opening (1).ogg"
+dest_files=["res://.godot/imported/Screws_Loose_Oh_No_Now_Theres_A_Boss_-_Opening (1).ogg-ccb363c0fe8726148d37bc9979a01a99.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

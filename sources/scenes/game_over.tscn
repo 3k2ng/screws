@@ -60,4 +60,6 @@ icon = SubResource("ImageTexture_0ont5")
 icon_alignment = 1
 vertical_icon_alignment = 0
 
+[node name="GameOverMusic" type="AudioStreamPlayer" parent="."]
+
 [connection signal="pressed" from="Panel/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
