@@ -5,6 +5,10 @@ var velocity:Vector2 = Vector2(0,-100)
 var maxlifetime = 20
 var lifetime = maxlifetime
 var bsp
+var toastx
+
+var block_range = 8 * 64
+var lanes = 8
 # Called when the node enters the scene tree for the first time.
 
 func _ready():
@@ -25,8 +29,10 @@ func _process(delta):
 	position.y += velocity.y * delta
 	
 	if velocity.y < 20 && velocity.y > -20:
-		self.position.x = randi_range(bsp.x - 128*4, bsp.x + 128*4)
+		var ran = randi_range(0,lanes)
+		position.x = bsp.x - block_range + (ran * block_range*2 / lanes)
 		velocity.x = 0
+		self.rotation_degrees = 360
 		
 	if velocity. y < 300:
 		velocity.y += 2000 * delta
@@ -37,4 +43,10 @@ func _process(delta):
 	if lifetime <= 0 || self.position.y > 1920:
 		self.queue_free()
 		
-	$Sprite2D.look_at(Vector2(velocity.x * 10,velocity.y * 10))
+	
+
+
+func _on_area_2d_body_entered(body):
+	if body.is_in_group("player"):
+		body.hit(0)
+	pass # Replace with function body.

@@ -111,7 +111,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"toast_shoot",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [node name="boss" type="CharacterBody2D"]
@@ -134,7 +134,7 @@ texture = ExtResource("3_6pdt7")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2hu65")
-animation = &"patrol"
+animation = &"toast_shoot"
 speed_scale = 2.0
 
 [node name="Area2D" type="Area2D" parent="."]

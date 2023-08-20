@@ -19,10 +19,16 @@ var stun_timer = 0
 
 var charge_dir = 0
 
+var toast_shoot_dur_max = 3
 var toast_shoot_dur = 0
 
 var toast_shoot_delay_max = 0.2
 var toast_shoot_delay = 0
+
+var num_toast = toast_shoot_dur_max/toast_shoot_delay_max
+var num_lane = 3
+
+var toast_x
 
 var start_pos
 
@@ -86,7 +92,7 @@ func _process(delta):
 			state = CHARGE
 		else:
 			state = SHOOT_TOAST
-			toast_shoot_dur = 3
+			toast_shoot_dur = toast_shoot_dur_max
 	
 	
 	pass
@@ -135,6 +141,7 @@ func _physics_process(delta):
 				shoot_toast()
 			toast_shoot_dur -= delta
 		else:
+			num_toast = toast_shoot_dur_max/toast_shoot_delay_max
 			state = PATROL
 			attack_timer = 3
 		
@@ -146,9 +153,11 @@ func on_shot():
 	pass
 
 func shoot_toast():
+
 	var ntoast = toast_bullet.instantiate()
 	ntoast.position = self.position
 	ntoast.bsp = start_pos
+	ntoast.toastx = toast_x
 	self.get_parent().add_child(ntoast)
 
 func _on_area_2d_body_entered(body):
