@@ -72,9 +72,9 @@ func _physics_process(delta):
 		state = HAPPY
 	if state == PATROL:
 		$AnimatedSprite2D.play("patrol")
-		if position.x >= end_point || is_on_wall():
+		if position.x >= end_point || (is_on_wall() && is_moving_right):
 			is_moving_right = false
-		elif position.x <= start_point || is_on_wall():
+		elif position.x <= start_point || (is_on_wall() && !is_moving_right):
 			is_moving_right = true
 		if is_moving_right:
 			$AnimatedSprite2D.flip_h = true
