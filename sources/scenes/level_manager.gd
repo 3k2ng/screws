@@ -6,6 +6,8 @@ func start_boss(body):
 	$Music.stream = preload("res://assets/Screws_Loose_Oh_No_Now_Theres_A_Boss_-_Loop.ogg")
 	$Music.play()
 	GameManage.reset_life()
+	
+	$Field/BossTrigger/Shape.disabled = true
 
 func boss_killed():
 	await get_tree().create_timer(3.0).timeout
