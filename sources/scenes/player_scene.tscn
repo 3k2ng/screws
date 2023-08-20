@@ -1,9 +1,15 @@
-[gd_scene load_steps=21 format=3 uid="uid://3ecgptmh5ssx"]
+[gd_scene load_steps=25 format=3 uid="uid://3ecgptmh5ssx"]
 
 [ext_resource type="Script" path="res://sources/objects/player.gd" id="1_ml32f"]
 [ext_resource type="Texture2D" uid="uid://byf26u7ytckyk" path="res://assets/sprites/mechanic/mechanic_idle.png" id="2_5odl0"]
+[ext_resource type="Texture2D" uid="uid://cpgj5qnb3j134" path="res://assets/sprites/mechanic/mechanic_fall.png" id="2_e8gdb"]
 [ext_resource type="AudioStream" uid="uid://cfwg5666uoxx" path="res://assets/sound fx/playejrump.mp3" id="3_sk477"]
 [ext_resource type="Texture2D" uid="uid://cpccdfxw2rgaa" path="res://assets/sprites/mechanic/mechanic_run.png" id="3_st7k7"]
+[ext_resource type="Texture2D" uid="uid://h8jvuub40ju6" path="res://assets/sprites/mechanic/mechanic_jump.png" id="4_mkudg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_imeq6"]
+atlas = ExtResource("2_e8gdb")
+region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ds2e3"]
 atlas = ExtResource("2_5odl0")
@@ -20,6 +26,10 @@ region = Rect2(256, 0, 128, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ir0gs"]
 atlas = ExtResource("2_5odl0")
 region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63pa5"]
+atlas = ExtResource("4_mkudg")
+region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_scamb"]
 atlas = ExtResource("3_st7k7")
@@ -57,6 +67,14 @@ region = Rect2(896, 0, 128, 128)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_imeq6")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ds2e3")
 }, {
 "duration": 1.0,
@@ -70,6 +88,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_63pa5")
+}],
+"loop": true,
+"name": &"jump",
 "speed": 5.0
 }, {
 "frames": [{
@@ -132,7 +158,7 @@ script = ExtResource("1_ml32f")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_h4shj")
-animation = &"walk"
+animation = &"fall"
 speed_scale = 2.0
 metadata/_edit_lock_ = true
 

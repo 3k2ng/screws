@@ -126,15 +126,21 @@ func _physics_process(delta: float) -> void:
 	if state == FREE:
 		movement(delta)
 	
-	if velocity.x == 0:
-		$Sprite.play("idle")
-	else:
-		$Sprite.play("walk")
-		if velocity.x > 0:
-			$Sprite.flip_h = true
+	if velocity.x > 0:
+		$Sprite.flip_h = true
+	elif velocity.x < 0:
+		$Sprite.flip_h = false
+	
+	if is_on_floor():
+		if velocity.x == 0:
+			$Sprite.play("idle")
 		else:
-			$Sprite.flip_h = false
-		
+			$Sprite.play("walk")
+	else:
+		if velocity.y > 0:
+			$Sprite.play("jump")
+		else:
+			$Sprite.play("fall")
 	
 	move_and_slide()
 	
