@@ -156,6 +156,9 @@ func _physics_process(delta: float) -> void:
 	if dash_timer > 0:
 		dash_timer -= delta
 
+func dash_anim():
+	pass
+
 func movement_anim():
 	if velocity.x > 0:
 		$Sprite.flip_h = true
