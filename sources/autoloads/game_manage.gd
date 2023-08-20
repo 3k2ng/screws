@@ -14,8 +14,8 @@ func reset_life():
 
 func lose_life():
 	current_player_life -= 1
-	if current_player_life <= 0:
+	if game_started and current_player_life <= 0:
 		game_over()
 
 func game_over():
-	pass
+	get_tree().change_scene_to_file("res://sources/scenes/game_over.tscn")

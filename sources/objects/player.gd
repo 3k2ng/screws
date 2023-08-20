@@ -69,7 +69,7 @@ var state = FREE
 var invin_timer = 0
 
 func _ready() -> void:
-	pass
+	GameManage.game_start()
 	
 func dash(delta):
 	

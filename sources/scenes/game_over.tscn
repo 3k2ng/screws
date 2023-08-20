@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dkb0pyd7y4agq"]
 
-[ext_resource type="TileSet" uid="uid://bq2ed7oa8kaw1" path="res://assets/tilesets/bg.tres" id="1_8xcww"]
-[ext_resource type="Texture2D" uid="uid://6ooix8db470j" path="res://assets/sprites/screwed.png" id="2_lv5w1"]
+[ext_resource type="TileSet" uid="uid://bq2ed7oa8kaw1" path="res://assets/tilesets/bg.tres" id="1_l6545"]
+[ext_resource type="Texture2D" uid="uid://6ooix8db470j" path="res://assets/sprites/screwed.png" id="2_a6fox"]
 
 [sub_resource type="FontFile" id="FontFile_xctml"]
 cache/0/16/0/ascent = 0.0
@@ -23,7 +23,7 @@ grow_vertical = 2
 
 [node name="Background" type="TileMap" parent="."]
 modulate = Color(0.498039, 0.498039, 0.498039, 1)
-tile_set = ExtResource("1_8xcww")
+tile_set = ExtResource("1_l6545")
 format = 2
 layer_0/tile_data = PackedInt32Array(0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 65539, 0, 0, 65538, 0, 0, 65537, 0, 0, 65536, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 65540, 0, 0, 4, 0, 0)
 
@@ -43,7 +43,7 @@ alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer"]
 layout_mode = 2
-texture = ExtResource("2_lv5w1")
+texture = ExtResource("2_a6fox")
 
 [node name="Restart" type="Button" parent="Panel/VBoxContainer"]
 modulate = Color(1, 0.458824, 0.364706, 1)
