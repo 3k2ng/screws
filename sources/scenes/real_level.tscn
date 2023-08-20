@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dwkqoim0w3ct6"]
+[gd_scene load_steps=15 format=3 uid="uid://dlyqk5h7u7i67"]
 
 [ext_resource type="TileSet" uid="uid://ctiu66fe7l3rj" path="res://assets/tilesets/metal_tiles.tres" id="1_0u5wo"]
 [ext_resource type="TileSet" uid="uid://bq2ed7oa8kaw1" path="res://assets/tilesets/bg.tres" id="1_aub2e"]
@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://d1mk60km0anic" path="res://sources/objects/screwling.tscn" id="7_16v1v"]
 [ext_resource type="PackedScene" uid="uid://dirclufgv8xyr" path="res://sources/objects/roomba.tscn" id="8_rnl0v"]
 [ext_resource type="Script" path="res://sources/objects/health_bar.gd" id="9_b3uc7"]
-[ext_resource type="PackedScene" uid="uid://nsd8wh4bwnmq" path="res://sources/objects/spike.tscn" id="10_wvfe3"]
+[ext_resource type="PackedScene" path="res://sources/objects/spike.tscn" id="10_wvfe3"]
 [ext_resource type="PackedScene" uid="uid://bc5503xjg0bks" path="res://sources/objects/boss.tscn" id="11_cmrh4"]
 [ext_resource type="AudioStream" uid="uid://dfyvf0ydqlr6w" path="res://assets/Screws_Loose_Oh_No_How_Could_This_Happen (1).ogg" id="13_jyr5i"]
 

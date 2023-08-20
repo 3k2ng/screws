@@ -34,7 +34,7 @@ var toast_x
 
 var start_pos
 
-var range = 8 * 4 * 64
+var range = 8 * 2 * 64
 
 var squish_timer = 0
 
@@ -196,7 +196,7 @@ func _physics_process(delta):
 	elif state == CHARGE:
 		$Sprite.play("angy")
 		#charge_noise.play()
-		velocity.x =  charge_dir * movement_speed*2.5
+		velocity.x =  charge_dir * movement_speed*3.5
 		if is_on_wall():
 			state = STUNNED
 			stun_timer = 1
@@ -217,13 +217,15 @@ func _physics_process(delta):
 				toast_shoot_delay -= delta
 			else:
 				toast_shoot_delay = toast_shoot_delay_max
-				
+				shoot_toast()				
+				shoot_toast()
+				shoot_toast()				
 				shoot_toast()
 			toast_shoot_dur -= delta
 		else:
 			num_toast = toast_shoot_dur_max/toast_shoot_delay_max
 			state = PATROL
-			attack_timer = 3
+			attack_timer = 2
 		
 	if not is_on_floor():
 		velocity.y += 512 * 1.5 * delta

@@ -7,8 +7,8 @@ var lifetime = maxlifetime
 var bsp
 var toastx
 
-var block_range = 8 * 64
-var lanes = 5
+var block_range = 8 * 2 * 64
+var lanes = 10
 # Called when the node enters the scene tree for the first time.
 
 func _ready():
