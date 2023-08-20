@@ -47,7 +47,6 @@ func see_player():
 	return
 
 func _process(delta):
-	see_player()
 	pass
 
 func _physics_process(delta):
@@ -63,11 +62,19 @@ func _physics_process(delta):
 			velocity.x = -movement_speed
 	elif state == CHARGE:
 		if(relative_position_x >= -300 and relative_position_x < 0):
-			velocity.x = -movement_speed*2
+			velocity.x = -movement_speed*2.5
 		elif(relative_position_x >= 0 and relative_position_x < 300):
-			velocity.x = movement_speed*2
+			velocity.x = movement_speed*2.5
 		pass
+<<<<<<< Updated upstream
+=======
+	elif state == STUNNED:
+		velocity.x = 0
+		print("Test")
+>>>>>>> Stashed changes
 	if not is_on_floor():
 		velocity.y += 512 * delta
 	move_and_slide()
-	
+func _on_area_2d_body_entered(body):
+	state = STUNNED
+	pass # Replace with function body.
