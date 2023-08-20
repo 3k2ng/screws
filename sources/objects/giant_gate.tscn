@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://c2t4ok2kgr7mk"]
+
+[ext_resource type="Texture2D" uid="uid://cow3y3ggsmqf4" path="res://assets/sprites/giant_gate.png" id="1_c42ub"]
+[ext_resource type="Script" path="res://sources/objects/giant_gate.gd" id="1_fu4db"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s2ym1"]
+size = Vector2(512, 32)
+
+[sub_resource type="Animation" id="Animation_rmssk"]
+resource_name = "open"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 6]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oxchi"]
+_data = {
+"open": SubResource("Animation_rmssk")
+}
+
+[node name="GiantGate" type="StaticBody2D"]
+script = ExtResource("1_fu4db")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_c42ub")
+vframes = 7
+frame = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_s2ym1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_oxchi")
+}

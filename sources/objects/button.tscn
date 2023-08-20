@@ -33,7 +33,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kp50n"]
 size = Vector2(53, 30)
 
-[node name="button" type="Node2D"]
+[node name="button" type="Node2D" groups=["Button"]]
 script = ExtResource("1_ylvfi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
