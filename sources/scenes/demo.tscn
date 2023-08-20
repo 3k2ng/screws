@@ -496,6 +496,19 @@ layer_0/tile_data = PackedInt32Array(393222, 327680, 2, 458758, 524288, 3, 52429
 metadata/_edit_lock_ = true
 
 [node name="Player" parent="Field" instance=ExtResource("3_86c4h")]
+extra_jumps = null
+movement_speed_blocks = null
+wall_bounce_blocks = null
+jump_height_blocks = null
+wall_slide_speed_blocks = null
+jump_time_to_peak = null
+jump_time_to_descent = null
+coyote_floor_time = null
+coyote_wall_time = null
+jump_buffer_time = null
+wall_bounce_time = null
+dash_length_blocks = null
+dash_speed_blocks_per_second = null
 
 [node name="Screwling" parent="Field" instance=ExtResource("2_kany6")]
 position = Vector2(630, 259)

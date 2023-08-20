@@ -39,11 +39,19 @@ const BLOCK_SIZE: int = 128
 @export var wall_bounce_time: float = 0.16
 @onready var wall_bounce_timer: float = 0.0
 
-@export var dash_timer_max: float = 0.16
+@export var dash_length_blocks:float = 5
+@export var dash_speed_blocks_per_second:float =  15
+
+
+@onready var dash_speed:float = dash_speed_blocks_per_second * BLOCK_SIZE
+@onready var dash_length = dash_length_blocks * BLOCK_SIZE
+
+@onready var dash_timer_max: float = dash_length/dash_speed
 @onready var dash_timer: float = 0.0
 
 enum{DASH,FREE}
 
+var direction = 0
 var state = FREE
 
 func _ready() -> void:
@@ -51,7 +59,7 @@ func _ready() -> void:
 	
 func dash(delta):
 	
-	if is_on_wall():
+	if is_on_wall() || dash_timer <= 0:
 		state = FREE
 		return
 		
@@ -59,7 +67,7 @@ func dash(delta):
 	
 func movement(delta):
 	
-	var direction = Input.get_axis("move_left", "move_right")
+	direction = Input.get_axis("move_left", "move_right")
 	if wall_bounce_timer > 0:
 		if direction * velocity.x > 0:
 			wall_bounce_timer = 0
@@ -72,13 +80,15 @@ func movement(delta):
 		coyote_floor_timer = coyote_floor_time
 		extra_jumps_left = extra_jumps
 
-	if is_on_wall_only() && direction:
+	if is_on_wall_only() && (Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left")):
 		coyote_wall_timer = coyote_wall_time
 		extra_jumps_left = extra_jumps
 		wall_normal_x = get_slide_collision(0).get_normal().x
 	
 	if Input.is_action_just_pressed("dash") and direction:
-		velocity.x = BLOCK_SIZE*10*direction
+		velocity.x = dash_speed * direction
+		velocity.y = 0
+		dash_timer = dash_timer_max
 		state = DASH
 		return
 		
@@ -122,28 +132,11 @@ func _physics_process(delta: float) -> void:
 	
 	if state == DASH:
 		dash(delta)
+		dash_anim()
 		
 	if state == FREE:
 		movement(delta)
-	
-	if velocity.x > 0:
-		$Sprite.flip_h = true
-	elif velocity.x < 0:
-		$Sprite.flip_h = false
-	
-	if is_on_floor():
-		if velocity.x == 0:
-			$Sprite.play("idle")
-		else:
-			$Sprite.play("walk")
-	else:
-		if velocity.y >= 0:
-			$Sprite.play("fall")
-		else:
-			$Sprite.play("jump")
-	
-	if is_on_wall_only():
-		pass
+		movement_anim()
 	
 	move_and_slide()
 	
@@ -162,3 +155,26 @@ func _physics_process(delta: float) -> void:
 		
 	if dash_timer > 0:
 		dash_timer -= delta
+
+func movement_anim():
+	if velocity.x > 0:
+		$Sprite.flip_h = true
+	elif velocity.x < 0:
+		$Sprite.flip_h = false
+	
+	if is_on_floor():
+		if velocity.x == 0:
+			$Sprite.play("idle")
+		else:
+			$Sprite.play("walk")
+	elif is_on_wall_only() && (Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left")):
+		$Sprite.play("wall")
+		if wall_normal_x < 0:
+			$Sprite.flip_h = false
+		else:
+			$Sprite.flip_h = true		
+	else:
+		if velocity.y >= 0:
+			$Sprite.play("fall")
+		else:
+			$Sprite.play("jump")
