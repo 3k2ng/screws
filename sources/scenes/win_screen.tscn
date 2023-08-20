@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://53ngi8lc7h2f"]
+[gd_scene load_steps=7 format=3 uid="uid://ci3fjf0e8gvdt"]
 
 [ext_resource type="Script" path="res://sources/objects/WinScreen.gd" id="1_y7le5"]
 [ext_resource type="TileSet" uid="uid://bq2ed7oa8kaw1" path="res://assets/tilesets/bg.tres" id="2_4ljma"]
