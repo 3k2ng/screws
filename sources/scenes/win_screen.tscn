@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://53ngi8lc7h2f"]
+[gd_scene load_steps=7 format=3 uid="uid://ci3fjf0e8gvdt"]
 
 [ext_resource type="Script" path="res://sources/objects/WinScreen.gd" id="1_y7le5"]
 [ext_resource type="TileSet" uid="uid://bq2ed7oa8kaw1" path="res://assets/tilesets/bg.tres" id="2_4ljma"]
-[ext_resource type="Texture2D" uid="uid://d1yc77ifjqfxw" path="res://assets/sprites/Cool Text - SCREWS 441416979822876.png" id="3_ua8ih"]
+[ext_resource type="Texture2D" uid="uid://b7f0dj6a6f5p5" path="res://assets/labels/cooltext441471063957902.png" id="3_upxw7"]
 [ext_resource type="AudioStream" uid="uid://cpxtsf38r8pya" path="res://assets/Screws_Loose_Oh_No_You_Are_On_The_Menu.ogg" id="4_ppdum"]
 
 [sub_resource type="FontFile" id="FontFile_v807e"]
@@ -33,28 +33,27 @@ layer_0/tile_data = PackedInt32Array(0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 65539, 
 [node name="Panel" type="Panel" parent="."]
 modulate = Color(0.729412, 0.905882, 1, 0.803922)
 layout_mode = 0
-offset_left = 1.0
-offset_top = -1.0
-offset_right = 1280.0
-offset_bottom = 736.0
+offset_left = -96.0
+offset_right = 1183.0
+offset_bottom = 737.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 0
-offset_left = 356.0
-offset_top = 302.0
-offset_right = 870.0
-offset_bottom = 460.0
+offset_left = 208.0
+offset_top = 320.0
+offset_right = 1218.0
+offset_bottom = 478.0
 alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer"]
 layout_mode = 2
-texture = ExtResource("3_ua8ih")
+texture = ExtResource("3_upxw7")
 
-[node name="Play" type="Button" parent="Panel/VBoxContainer"]
+[node name="PlayAgain" type="Button" parent="Panel/VBoxContainer"]
 modulate = Color(1, 0.458824, 0.364706, 1)
 layout_mode = 2
 theme_override_fonts/font = SubResource("FontFile_v807e")
-text = "PLAY
+text = "PLAY AGAIN?
 "
 icon = SubResource("ImageTexture_qi2up")
 icon_alignment = 1
@@ -63,4 +62,4 @@ vertical_icon_alignment = 0
 [node name="WinMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_ppdum")
 
-[connection signal="pressed" from="Panel/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/PlayAgain" to="." method="_on_play_pressed"]

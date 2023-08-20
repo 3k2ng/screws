@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-@onready var opened = true
+@onready var opened = false
 
 func _process(delta):
 	if opened:

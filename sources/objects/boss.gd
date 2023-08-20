@@ -268,7 +268,6 @@ func on_shot():
 	pass
 
 func shoot_toast():
-
 	var ntoast = toast_bullet.instantiate()
 	ntoast.position = self.position
 	ntoast.bsp = start_pos

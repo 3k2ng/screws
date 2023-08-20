@@ -14,7 +14,6 @@ func spawn_floor_toast():
 	ntoast.position = self.position
 	ntoast.dir = gap/abs(gap)
 	self.get_parent().add_child(ntoast)
-	pass
 
 func _process(delta):
 	

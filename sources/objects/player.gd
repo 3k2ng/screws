@@ -244,7 +244,7 @@ func movement_anim():
 		if wall_normal_x < 0:
 			$Sprite.flip_h = false
 		else:
-			$Sprite.flip_h = true		
+			$Sprite.flip_h = true
 	else:
 		if velocity.y >= 0:
 			$Sprite.play("fall" + bleh)
