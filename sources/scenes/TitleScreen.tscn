@@ -13,10 +13,10 @@ script = ExtResource("1_w61co")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 2.0
+offset_left = 1.0
 offset_top = -1.0
-offset_right = 520.0
-offset_bottom = 281.0
+offset_right = 1136.0
+offset_bottom = 571.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 0

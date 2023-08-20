@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://4l1345vcd266"]
+[gd_scene load_steps=9 format=3 uid="uid://4l1345vcd266"]
 
 [ext_resource type="Texture2D" uid="uid://c0uyh7kr8sr70" path="res://assets/sprites/autotile.png" id="1_g8yc0"]
 [ext_resource type="Texture2D" uid="uid://odxtkxa8eybn" path="res://icon.svg" id="1_ogyri"]
 [ext_resource type="PackedScene" uid="uid://d1mk60km0anic" path="res://sources/objects/screwling.tscn" id="2_kany6"]
 [ext_resource type="Script" path="res://sources/objects/player.gd" id="2_v21kg"]
+[ext_resource type="AudioStream" uid="uid://cfwg5666uoxx" path="res://assets/sound fx/playejrump.mp3" id="5_h2n5n"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5863n"]
 texture = ExtResource("1_g8yc0")
@@ -518,3 +519,7 @@ metadata/_edit_lock_ = true
 [node name="Camera2D" type="Camera2D" parent="Field/Player"]
 zoom = Vector2(0.5, 0.5)
 metadata/_edit_lock_ = true
+
+[node name="JumpNoise" type="AudioStreamPlayer2D" parent="Field/Player"]
+stream = ExtResource("5_h2n5n")
+volume_db = 7.924

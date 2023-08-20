@@ -13,6 +13,8 @@ const BLOCK_SIZE: int = 128
 @export var jump_time_to_peak : float = 0.6
 @export var jump_time_to_descent : float = 0.4
 
+@onready var jump_noise = $JumpNoise
+
 @onready var jump_height: float = jump_height_blocks * BLOCK_SIZE
 @onready var wall_bounce: float = wall_bounce_blocks * BLOCK_SIZE
 @onready var movement_speed: float = movement_speed_blocks * BLOCK_SIZE
@@ -60,7 +62,13 @@ func _physics_process(delta: float) -> void:
 		extra_jumps_left = extra_jumps
 		wall_normal_x = get_slide_collision(0).get_normal().x
 	
+	if Input.is_action_just_pressed("dash") and Input.is_action_just_pressed("move_right"):
+		velocity.x = BLOCK_SIZE*48
+	elif Input.is_action_just_pressed("dash") and Input.is_action_just_pressed("move_left"):
+		velocity.x = -BLOCK_SIZE*48
+		
 	if Input.is_action_just_pressed("jump"):
+		jump_noise.play()
 		jump_buffer_timer = jump_buffer_time
 	
 	# If jump is pressed (jump_buffer_timer > 0) and either of the coyote timer is active
