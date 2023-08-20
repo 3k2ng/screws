@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://da638slh2jbjj"]
+
+[ext_resource type="Texture2D" uid="uid://be2v24s61bu1t" path="res://assets/sprites/screw.png" id="1_x2bc2"]
+
+[node name="Heart" type="TextureRect"]
+texture = ExtResource("1_x2bc2")
+stretch_mode = 2

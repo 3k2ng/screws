@@ -19,3 +19,4 @@ func lose_life():
 
 func game_over():
 	get_tree().change_scene_to_file("res://sources/scenes/game_over.tscn")
+	game_started = false
