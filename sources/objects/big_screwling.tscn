@@ -8,6 +8,7 @@ size = Vector2(128, 128)
 
 [node name="big_screwiling" type="CharacterBody2D"]
 position = Vector2(576, 128)
+collision_layer = 4
 script = ExtResource("1_qtmbo")
 
 [node name="Sprite" type="Sprite2D" parent="."]

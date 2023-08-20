@@ -170,7 +170,7 @@ func movement_anim():
 			$Sprite.play("idle")
 		else:
 			$Sprite.play("walk")
-	elif is_on_wall_only() && (Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left")):
+	elif velocity.y > 0 && is_on_wall_only() && (Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left")):
 		$Sprite.play("wall")
 		if wall_normal_x < 0:
 			$Sprite.flip_h = false

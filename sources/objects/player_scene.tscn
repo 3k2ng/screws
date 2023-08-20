@@ -161,8 +161,9 @@ _data = {
 "idle": SubResource("Animation_xelj2")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cq4oj"]
-size = Vector2(64, 80)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gvba4"]
+radius = 32.0
+height = 80.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 position = Vector2(192, 256)
@@ -171,7 +172,7 @@ script = ExtResource("1_ml32f")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_h4shj")
-animation = &"wall"
+animation = &"idle"
 speed_scale = 2.0
 metadata/_edit_lock_ = true
 
@@ -183,7 +184,7 @@ libraries = {
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 24)
-shape = SubResource("RectangleShape2D_cq4oj")
+shape = SubResource("CapsuleShape2D_gvba4")
 metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
