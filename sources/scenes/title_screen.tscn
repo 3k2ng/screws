@@ -23,14 +23,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_w61co")
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-
-[node name="Background" type="TileMap" parent="ParallaxBackground"]
+[node name="Background" type="TileMap" parent="."]
 modulate = Color(0.498039, 0.498039, 0.498039, 1)
-position = Vector2(10, 10)
 tile_set = ExtResource("2_imlr5")
 format = 2
-layer_0/tile_data = PackedInt32Array(0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 65539, 0, 0, 65538, 0, 0, 65537, 0, 0, 65536, 0, 0, -65533, 0, 0, -65534, 0, 0, -65535, 0, 0, -65536, 0, 0, -1, 0, 0, 65535, 0, 0, 131071, 0, 0, -2, 0, 0, 65534, 0, 0, 131070, 0, 0, 196606, 0, 0, 196607, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 65540, 0, 0, 4, 0, 0, -65532, 0, 0, -131068, 0, 0, -131069, 0, 0, -131070, 0, 0, -131071, 0, 0, -131072, 0, 0, -65537, 0, 0, -65538, 0, 0, -65539, 0, 0, -3, 0, 0, 65533, 0, 0, 131069, 0, 0, 196605, 0, 0)
+layer_0/tile_data = PackedInt32Array(0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 65539, 0, 0, 65538, 0, 0, 65537, 0, 0, 65536, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 65540, 0, 0, 4, 0, 0)
 
 [node name="Panel" type="Panel" parent="."]
 modulate = Color(0.729412, 0.905882, 1, 0.803922)

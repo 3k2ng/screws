@@ -253,8 +253,9 @@ func movement_anim():
 func hit(knockback):
 	if invin_timer <= 0:
 		invin_timer = 1
+		$FlashingPlayer.play("flash")
 		$Sprite.play("hurt")
 		state = HIT
 		velocity.x = knockback
-		
 		velocity.y = abs(knockback) * -2
+		GameManage.lose_life()
