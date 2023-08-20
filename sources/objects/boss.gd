@@ -227,7 +227,7 @@ func _physics_process(delta):
 		else:
 			num_toast = toast_shoot_dur_max/toast_shoot_delay_max
 			state = PATROL
-			attack_timer = 2
+			attack_timer = 1.5
 	
 	
 	if not is_on_floor():

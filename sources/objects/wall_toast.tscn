@@ -1,10 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://dbt8kjemvpc2l"]
+[gd_scene load_steps=4 format=3 uid="uid://dbt8kjemvpc2l"]
 
 [ext_resource type="Texture2D" uid="uid://mul1c0tacln6" path="res://assets/sprites/toaster/bread_mid.png" id="1_3o2vi"]
 [ext_resource type="Script" path="res://sources/objects/wall_toast.gd" id="1_koorj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0lesw"]
 
 [node name="wall_toast" type="Node2D"]
 script = ExtResource("1_koorj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_3o2vi")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_0lesw")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
