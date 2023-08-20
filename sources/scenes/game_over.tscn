@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://dkb0pyd7y4agq"]
+[gd_scene load_steps=6 format=3 uid="uid://dkb0pyd7y4agq"]
 
+[ext_resource type="Script" path="res://sources/objects/game_over.gd" id="1_6u6et"]
 [ext_resource type="TileSet" uid="uid://bq2ed7oa8kaw1" path="res://assets/tilesets/bg.tres" id="1_l6545"]
 [ext_resource type="Texture2D" uid="uid://6ooix8db470j" path="res://assets/sprites/screwed.png" id="2_a6fox"]
 
 [sub_resource type="FontFile" id="FontFile_xctml"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -20,6 +24,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_6u6et")
 
 [node name="Background" type="TileMap" parent="."]
 modulate = Color(0.498039, 0.498039, 0.498039, 1)
@@ -29,6 +34,7 @@ layer_0/tile_data = PackedInt32Array(0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 65539, 
 
 [node name="Panel" type="Panel" parent="."]
 modulate = Color(0.729412, 0.905882, 1, 0.803922)
+layout_mode = 0
 offset_top = 16.0
 offset_right = 1279.0
 offset_bottom = 753.0
@@ -53,3 +59,5 @@ text = "RESTART"
 icon = SubResource("ImageTexture_0ont5")
 icon_alignment = 1
 vertical_icon_alignment = 0
+
+[connection signal="pressed" from="Panel/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
