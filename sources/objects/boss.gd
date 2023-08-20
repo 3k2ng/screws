@@ -32,6 +32,8 @@ var toast_x
 
 var start_pos
 
+var squish_timer = 0
+
 var attack_timer = 0
 
 @onready var toast_bullet = preload("res://sources/objects/toast_bullet.tscn")
@@ -85,16 +87,26 @@ func _process(delta):
 			ran = rng.randi_range(1,3)
 		else:
 			ran = randi_range(1,2)
-			
+		
+		ran = 1
+		
 		if ran == 3:
 			var relative_position_x : float = (player_node.global_position.x - global_position.x)
 			charge_dir = relative_position_x / abs(relative_position_x)
 			state = CHARGE
-		else:
+		elif ran == 2:
 			state = SHOOT_TOAST
 			toast_shoot_dur = toast_shoot_dur_max
+		else:
+			
+			state = JUMP
+			velocity.x = 0
+			$Sprite.play("jump")
 	
 	
+	pass
+
+func floor_toast():
 	pass
 
 func _physics_process(delta):
@@ -104,6 +116,38 @@ func _physics_process(delta):
 		$Sprite.play("happy")
 		velocity.x = 0
 		return
+	
+	if state == JUMP:
+
+		if $Sprite.animation == "jump" && $Sprite.frame == 2:
+			self.velocity.y = -400
+			$Sprite.play("jumping")
+		elif $Sprite.animation != "jump":
+			
+			if not is_on_floor():
+				if velocity.y > 0:
+					velocity.y += 10
+					$Sprite.play("jumping")
+				else: 
+					$Sprite.play("jumping")
+			else:
+				
+				print($Sprite.animation)
+				
+				if $Sprite.animation != "falling":
+					squish_timer = 0.5
+					$Sprite.play("falling")
+					floor_toast()
+				
+				print($Sprite.animation)
+				
+				if squish_timer <= 0:
+					print("D")
+					attack_timer = 3
+					state = PATROL
+				else:
+					squish_timer -= delta
+
 	
 	if state == PATROL:
 

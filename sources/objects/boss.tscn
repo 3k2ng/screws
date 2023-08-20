@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bc5503xjg0bks"]
+[gd_scene load_steps=27 format=3 uid="uid://bc5503xjg0bks"]
 
 [ext_resource type="Texture2D" uid="uid://d3fftuoelaju8" path="res://assets/sprites/toaster/toaster.png" id="1_j8omb"]
 [ext_resource type="Script" path="res://sources/objects/boss.gd" id="1_sswnv"]
@@ -31,6 +31,10 @@ region = Rect2(1536, 0, 128, 128)
 atlas = ExtResource("1_j8omb")
 region = Rect2(1664, 0, 128, 128)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_axhy8"]
+atlas = ExtResource("1_j8omb")
+region = Rect2(384, 0, 128, 128)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_rvlmj"]
 atlas = ExtResource("1_j8omb")
 region = Rect2(1792, 0, 128, 128)
@@ -46,6 +50,22 @@ region = Rect2(2048, 0, 128, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_c7trx"]
 atlas = ExtResource("1_j8omb")
 region = Rect2(2176, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_if72k"]
+atlas = ExtResource("1_j8omb")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nync4"]
+atlas = ExtResource("1_j8omb")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jmhwr"]
+atlas = ExtResource("1_j8omb")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qkon"]
+atlas = ExtResource("1_j8omb")
+region = Rect2(256, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_glkus"]
 atlas = ExtResource("1_j8omb")
@@ -103,6 +123,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_axhy8")
+}],
+"loop": true,
+"name": &"falling",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_rvlmj")
 }, {
 "duration": 1.0,
@@ -116,6 +144,28 @@ animations = [{
 }],
 "loop": true,
 "name": &"happy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_if72k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nync4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jmhwr")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0qkon")
+}],
+"loop": true,
+"name": &"jumping",
 "speed": 5.0
 }, {
 "frames": [{
@@ -167,7 +217,7 @@ texture = ExtResource("3_6pdt7")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2hu65")
-animation = &"happy"
+animation = &"jump"
 speed_scale = 2.0
 
 [node name="Area2D" type="Area2D" parent="."]
