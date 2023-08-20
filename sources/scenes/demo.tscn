@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://4l1345vcd266"]
 
 [ext_resource type="Texture2D" uid="uid://c0uyh7kr8sr70" path="res://assets/sprites/autotile.png" id="1_g8yc0"]
-[ext_resource type="PackedScene" uid="uid://dirclufgv8xyr" path="res://sources/objects/dust_chungus.tscn" id="1_ym6od"]
+[ext_resource type="PackedScene" uid="uid://dirclufgv8xyr" path="res://sources/objects/rumba.tscn" id="1_ym6od"]
 [ext_resource type="PackedScene" uid="uid://d1mk60km0anic" path="res://sources/objects/screwling.tscn" id="2_kany6"]
 [ext_resource type="PackedScene" uid="uid://3ecgptmh5ssx" path="res://sources/objects/player_scene.tscn" id="3_86c4h"]
 
@@ -489,8 +489,8 @@ sources/0 = SubResource("TileSetAtlasSource_5863n")
 
 [node name="Field" type="Node2D" parent="."]
 
-[node name="dust_chungus" parent="Field" instance=ExtResource("1_ym6od")]
-position = Vector2(1126, 224)
+[node name="rumba" parent="Field" instance=ExtResource("1_ym6od")]
+position = Vector2(1504, 370)
 
 [node name="TileMap" type="TileMap" parent="Field"]
 scale = Vector2(8, 8)
@@ -504,4 +504,4 @@ dash_length_blocks = 2.0
 dash_speed_blocks_per_second = 8.0
 
 [node name="Screwling" parent="Field" instance=ExtResource("2_kany6")]
-position = Vector2(1919, 443)
+position = Vector2(789, 336)
