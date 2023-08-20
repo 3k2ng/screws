@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dirclufgv8xyr"]
 
-[ext_resource type="Script" path="res://sources/objects/big_screwling.gd" id="1_qtmbo"]
+[ext_resource type="Script" path="res://sources/objects/dust_chungus.gd" id="1_ao8ka"]
 [ext_resource type="Texture2D" uid="uid://odxtkxa8eybn" path="res://icon.svg" id="2_ciffa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ld1pr"]
@@ -9,10 +9,10 @@ size = Vector2(123, 124)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ktfgd"]
 size = Vector2(128, 128)
 
-[node name="big_screwiling" type="CharacterBody2D"]
+[node name="dust_chungus" type="CharacterBody2D"]
 position = Vector2(576, 128)
 collision_layer = 4
-script = ExtResource("1_qtmbo")
+script = ExtResource("1_ao8ka")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4

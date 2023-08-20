@@ -15,10 +15,11 @@ const BLOCK_SIZE: int = 128
 @onready var player_node = get_tree().get_first_node_in_group("player")
 
 @onready var is_moving_right = true
+var stun_timer = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	velocity.x = movement_speed
+	state = PATROL
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
@@ -50,11 +51,13 @@ func _process(delta):
 	pass
 
 func _physics_process(delta):
+	
 	var relative_position_x : float = (player_node.global_position.x - global_position.x)
 	if state == PATROL:
-		if position.x >= end_point:
+		see_player()
+		if position.x >= end_point || is_on_wall():
 			is_moving_right = false
-		elif position.x <= start_point:
+		elif position.x <= start_point || is_on_wall():
 			is_moving_right = true
 		if is_moving_right:
 			velocity.x = movement_speed
@@ -66,15 +69,18 @@ func _physics_process(delta):
 		elif(relative_position_x >= 0 and relative_position_x < 300):
 			velocity.x = movement_speed*2.5
 		pass
-<<<<<<< Updated upstream
-=======
 	elif state == STUNNED:
+		stun_timer -= delta
+		if stun_timer <= 0:
+			state = PATROL
 		velocity.x = 0
-		print("Test")
->>>>>>> Stashed changes
+		
 	if not is_on_floor():
 		velocity.y += 512 * delta
 	move_and_slide()
+	
 func _on_area_2d_body_entered(body):
-	state = STUNNED
+	if state == CHARGE:
+		state = STUNNED
+		stun_timer = 5
 	pass # Replace with function body.
