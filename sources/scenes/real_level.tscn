@@ -12,7 +12,7 @@
 [ext_resource type="Script" path="res://sources/objects/health_bar.gd" id="9_b3uc7"]
 [ext_resource type="PackedScene" uid="uid://nsd8wh4bwnmq" path="res://sources/objects/spike.tscn" id="10_wvfe3"]
 [ext_resource type="PackedScene" uid="uid://bc5503xjg0bks" path="res://sources/objects/boss.tscn" id="11_cmrh4"]
-[ext_resource type="AudioStream" uid="uid://dfyvf0ydqlr6w" path="res://assets/Screws_Loose_Oh_No_How_Could_This_Happen (1).ogg" id="13_jyr5i"]
+[ext_resource type="AudioStream" uid="uid://baytph2s7iul0" path="res://assets/Screws_Loose_Oh_No_How_Could_This_Happen_-_Opening.ogg" id="13_ljlv4"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_wqpd6"]
 a = Vector2(1016, 448)
@@ -157,7 +157,7 @@ collision_mask = 2
 shape = SubResource("SegmentShape2D_wqpd6")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("13_jyr5i")
+stream = ExtResource("13_ljlv4")
 autoplay = true
 
 [connection signal="win" from="Field/boss" to="." method="boss_killed"]

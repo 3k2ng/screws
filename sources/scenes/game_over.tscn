@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dkb0pyd7y4agq"]
+[gd_scene load_steps=7 format=3 uid="uid://dkb0pyd7y4agq"]
 
 [ext_resource type="Script" path="res://sources/objects/game_over.gd" id="1_6u6et"]
 [ext_resource type="TileSet" uid="uid://bq2ed7oa8kaw1" path="res://assets/tilesets/bg.tres" id="1_l6545"]
 [ext_resource type="Texture2D" uid="uid://6ooix8db470j" path="res://assets/sprites/screwed.png" id="2_a6fox"]
+[ext_resource type="AudioStream" uid="uid://yqhde6bmai2b" path="res://assets/Screws_Loose_Oh_No_You_Lost.ogg" id="4_6xtm4"]
 
 [sub_resource type="FontFile" id="FontFile_xctml"]
 subpixel_positioning = 0
@@ -61,5 +62,6 @@ icon_alignment = 1
 vertical_icon_alignment = 0
 
 [node name="GameOverMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_6xtm4")
 
 [connection signal="pressed" from="Panel/VBoxContainer/Restart" to="." method="_on_restart_pressed"]

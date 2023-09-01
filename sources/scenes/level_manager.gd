@@ -1,5 +1,10 @@
 extends Node
 
+func _ready() -> void:
+	await $Music.finished
+	$Music.stream = preload("res://assets/Screws_Loose_Oh_No_How_Could_This_Happen_-_Loop.ogg")
+	$Music.play()
+
 func start_boss(body):
 	if body.is_in_group("player"):
 		get_tree().get_first_node_in_group("boss").enable()
