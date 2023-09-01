@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/Screws_Loose_Oh_No_Now_Theres_A_Boss_-_Loop.o
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

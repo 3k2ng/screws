@@ -426,7 +426,6 @@ volume_db = 7.924
 
 [node name="ShootNoise" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("16_vs81x")
-volume_db = 16.865
 pitch_scale = 1.32
 max_distance = 1000.0
 attenuation = 0.25
